@@ -1,0 +1,81 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block 'title' %}ShipNow - Add New Address{% endblock %}
+{% block 'container' %}
+	
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+
+    <div class="row page-titles">	
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item">Address</li>
+                <li class="breadcrumb-item active">Add New</li>
+            </ol>
+        </div>
+        <!-- <div class="col-md-6 col-4 align-self-center">
+            <a href="https://wrappixel.com/templates/monsteradmin/" class="btn pull-right hidden-sm-down btn-success"> Upgrade to Pro</a>
+        </div> -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+         
+	<!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-block">
+                    <form method="post">
+						{% csrf_token %}
+						<table>
+							<tr>
+								<td>Name</td>
+								<td>{{form.name}}</td>
+							</tr>
+							<tr>
+								<td>Address</td>
+								<td>{{form.address}}</td>
+							</tr>
+							<tr>
+								<td>Country</td>
+								<td>{{form.country}}</td>
+							</tr>
+							<tr>
+								<td>State</td>
+								<td>{{form.state}}</td>
+							</tr>
+							<tr>
+								<td>City</td>
+								<td>{{form.city}}</td>
+							</tr>
+							<tr>
+								<td>Pin Code</td>
+								<td>{{form.pincode}}</td>
+							</tr>
+							<tr>
+								<td>Phone Number</td>
+								<td>{{form.phone}}</td>
+							</tr>
+							<tr>
+								<td>Email</td>
+								<td>{{form.email}}</td>
+							</tr>
+							<tr>
+								<td colspan="1" align="right"><input type="submit"></td>
+							</tr>
+						</table>
+					</form>
+                </div>
+            </div>
+	    </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End PAge Content -->
+    <!-- ============================================================== -->
+{% endblock %}

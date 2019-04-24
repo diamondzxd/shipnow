@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+	<title></title>
+</head>
+<body>
+	<h2>Updating Address</h2><br>
+	<form method="post">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Name</td>
+				<td>{{form.name}}</td>
+			</tr>
+			<tr>
+				<td>Address</td>
+				<td>{{form.address}}</td>
+			</tr>
+			<tr>
+				<td>Country</td>
+				<td>{{form.country}}</td>
+			</tr>
+			<tr>
+				<td>State</td>
+				<td>{{form.state}}</td>
+			</tr>
+			<tr>
+				<td>City</td>
+				<td>{{form.city}}</td>
+			</tr>
+			<tr>
+				<td>Pin Code</td>
+				<td>{{form.pincode}}</td>
+			</tr>
+			<tr>
+				<td>Phone Number</td>
+				<td>{{form.phone}}</td>
+			</tr>
+			<tr>
+				<td>Email</td>
+				<td>{{form.email}}</td>
+			</tr>
+				<td>Is Saved?</td>
+				<td>{{form.is_saved}}</td>
+			<tr>
+				<td colspan="1" align="right"><input type="submit"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

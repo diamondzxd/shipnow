@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+</head>
+<body>
+<h2>Displaying all the Products!</h2>
+
+
+<table class="table table-bordered table-hover">
+	<tr>
+		<th>ID</th>
+		<th>Name</th>
+		<th>Price</th>
+		<th>SKU</th>
+		<th>HSN</th>
+		<th>Weight (KG)</th>
+		<th>Dimensions</th>
+		<th>Edit</th>
+		<th>Delete</th>
+
+		</tr>
+		{% for a in products %}
+		<tr>
+			<td>{{a.id}}</td>
+			<td>{{a.name}}</td>
+			<td>{{a.price}}</td>
+			<td>{{a.sku}}</td>
+			<td>{{a.hsn}}</td>
+			<td>{{a.weight}}</td>
+			<td>{{a.length}} x {{a.breadth}} x {{a.height}} cm</td>
+			<td><a href="/updateproduct/{{a.id}}">Edit</a></td>
+			<td><a href="/deleteproduct/{{a.id}}">Delete</a></td>
+		</tr>
+		{% endfor %}
+</table>
+</body>
+</html>

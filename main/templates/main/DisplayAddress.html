@@ -1,0 +1,75 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block 'title' %}ShipNow - Displaying Addresses{% endblock %}
+{% block 'container' %}
+	
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+
+    <div class="row page-titles">	
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Manage Address</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item">Address</li>
+                <li class="breadcrumb-item active">Manage</li>
+            </ol>
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+            <a href="/addaddress/" class="btn pull-right hidden-sm-down btn-success"> Add Address</a>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+         
+	<!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-block">
+
+
+
+<table class="table table-bordered table-hover">
+	<tr class="table-info">
+		<th>ID</th>
+		<th>Name</th>
+		<th>Address</th>
+		<!-- <th>Country</th>
+		<th>State</th>
+		<th>City</th> -->
+		<th>Pin Code</th>
+		<th>Phone Number</th>
+		<th>E-mail</th>
+
+	</tr>
+		{% for a in addresses %}
+	<tr>
+			<td>{{a.id}}</td>
+			<td>{{a.name}}</td>
+			<td>{{a.address}}, {{a.city}}, {{a.state}}</td>
+			<!-- <td>{{a.country}}</td>
+			<td>{{a.state}}</td>
+			<td>{{a.city}}</td> -->
+			<td>{{a.pincode}}</td>
+			<td>{{a.phone}}</td>
+			<td>{{a.email}}</td>
+			<!-- <td><a href="/updateaddress/{{a.id}}">Edit</a></td>
+			<td><a href="/deleteaddress/{{a.id}}">Delete</a></td> -->
+	</tr>
+		{% endfor %}
+</table>
+	        
+	    </div>
+	</div>
+	</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End PAge Content -->
+	<!-- ============================================================== -->
+{% endblock %}

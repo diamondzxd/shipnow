@@ -1,0 +1,22 @@
+Address:
+	id
+	name
+	address
+	country
+	state
+	city
+	pincode
+	phone
+	email
+
+
+Products:
+	id
+	name
+	price
+	sku
+	hsn
+	weight
+	length
+	breadth
+	height
