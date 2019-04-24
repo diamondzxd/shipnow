@@ -1,91 +1,88 @@
+{% extends 'main/base.html' %}
 {% load static %}
-{% load widget_tweaks %}
-<!DOCTYPE html>
-<html>
-<head>
-	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-	<script src="{% static 'js/jquery.js' %}"></script>
-	<script src="{% static 'js/bootstrap.js' %}"></script>
-	<style type="text/css">
-		.row{
-    margin-left: 0;
-    margin-right: 0;
-}
 
-.container{
-    .row{
-        margin-left: -15px;
-        margin-right: -15px;
-    }
-}
-	</style>
-	<title></title>
-</head>
-<body>
+{% block 'title' %}Enter your Title here{% endblock %}
+{% block 'container' %}       
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
 
-	<div class="row">
-		<div class="col-md-12">
-			<h2>Adding an Order</h2>
-		</div>
-	</div>
+<div class="row page-titles">
+    <div class="col-md-6 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </div>
+    <!-- <div class="col-md-6 col-4 align-self-center">
+        <a href="https://wrappixel.com/templates/monsteradmin/" class="btn pull-right hidden-sm-down btn-success"> Upgrade to Pro</a>
+    </div> -->
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row">
 
+    <div class="col-4">
+        <div class="card">
+            <div class="card-block">
+                <form method="post" novalidate>
+					{% csrf_token %}
+					<div class="form-group">
+						<select id="pickup_address_selector" name="pickup_address_selector" class="form-control">
+							<option value="0">Select Pickup Address</option>
+							{% for address in addresses %}
+								<option value="{{address.id}}">{{address.name}}</option>
+							{% endfor %}
+						</select>
+					</div>
+					<hr>
+					<div class="form-group">
+						<center>OR</center>
+					</div>
 
-	<form method="post" novalidate>
-		{% csrf_token %}
+					<div class="form-group">
+						{{addressform1.name}}
+					</div>
+					<div class="form-group">
+						{{addressform1.address}}
+					</div>
+					<div class="form-group">
+						{{addressform1.country}}
+					</div>
+					<div class="form-group">
+						{{addressform1.state}}
+					</div>
+					<div class="form-group">
+						{{addressform1.city}}
+					</div>
+					<div class="form-group">
+						{{addressform1.pincode}}
+					</div>
+					<div class="form-group">
+						{{addressform1.phone}}
+					</div>
+					<div class="form-group">
+						{{addressform1.email}}
+					</div>
+					<div class="form-group">
+					    <input type="checkbox" id="pickup_save" value="True">
+					    <label for="pickup_save">Save Pickup Address</label>
+					</div>
+            </div>
+        </div>
+    </div>
 
-	<div class="row">
-		<div class="col-md-3 offset-md-1 card">
-			<h4>Pickup Warehouse</h4>
-			
-			<div class="form-group">
-				<select id="pickup_address_selector" name="pickup_address_selector" class="form-control">
-					<option value="0">Select Pickup Address</option>
-					{% for address in addresses %}
-						<option value="{{address.id}}">{{address.name}}</option>
-					{% endfor %}
-				</select>
-			</div>
-			<hr>
-			<div class="form-group">
-				<center>OR</center>
-			</div>
-
-			<div class="form-group">
-				{{addressform1.name}}
-			</div>
-			<div class="form-group">
-				{{addressform1.address}}
-			</div>
-			<div class="form-group">
-				{{addressform1.country}}
-			</div>
-			<div class="form-group">
-				{{addressform1.state}}
-			</div>
-			<div class="form-group">
-				{{addressform1.city}}
-			</div>
-			<div class="form-group">
-				{{addressform1.pincode}}
-			</div>
-			<div class="form-group">
-				{{addressform1.phone}}
-			</div>
-			<div class="form-group">
-				{{addressform1.email}}
-			</div>
-			<div class="custom-control custom-checkbox">
-			    <input type="checkbox" class="custom-control-input" id="pickup_save" value="True">
-			    <label class="custom-control-label" for="pickup_save">Save Pickup Address</label>
-			</div>
-		</div>
-
-		<div class="col-md-3 card" id="addressform2">
-			<h4>Delivery Address</h4>
-			
-			<div class="form-group">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-block">
+            	<div class="form-group">
 				<select id="delivery_address_selector" name="delivery_address_selector" class="form-control">
-					<option value="0">Select Pickup Address</option>
+					<option value="0">Select Delivery Address</option>
 					{% for address in addresses %}
 						<option value="{{address.id}}">{{address.name}}</option>
 					{% endfor %}
@@ -120,17 +117,18 @@
 			<div class="form-group">
 				{{addressform2.email}}
 			</div>
-			<div class="custom-control custom-checkbox">
-			    <input type="checkbox" class="custom-control-input" id="delivery_save" value="True">
-			    <label class="custom-control-label" for="delivery_save">Save Delivery Address</label>
+			<div class="form-group">
+			    <input type="checkbox" id="delivery_save" value="True">
+			    <label for="delivery_save" style="font-weight: 400;">Save Delivery Address</label>
 			</div>
-		
 		</div>
+        </div>
+    </div>
 
-
-		<div class="col-md-3  card">
-		<h4>Product Details</h4>
-		<div class="form-group">
+    <div class="col-4">
+        <div class="card">
+            <div class="card-block">
+            	<div class="form-group">
 			<select name="product_selector" class="form-control" id="product_selector">
 				<option value="0">Select Product</option>
 				{% for product in products %}
@@ -168,10 +166,10 @@
 					{{productform.height}}
 				</div>
 			</div>
-			<div class="custom-control custom-checkbox">
-			    <input type="checkbox" class="custom-control-input" id="product_save" value="True">
-			    <label class="custom-control-label" for="product_save">Save Product</label><br><br></div>
-
+			<div class="form-group">
+			    <input type="checkbox" id="product_save" value="True">
+			    <label for="product_save">Save Product</label><br></div>
+			    <hr>
 			<div class="form-group">
 				<select name="payment_mode" class="form-control" id="payment_mode">
 						<option value="0">Select Payment Method</option>
@@ -183,14 +181,23 @@
 			<div class="form-group">
 				<input type="number" name="order_amount" id="order_amount" placeholder="Enter Order Invoice Amount (₹)" class="form-control">
 			</div>
-			<div class="form-group">
+			<div>
 				<button class="btn btn-primary" type="submit">Submit!</button>
 			</div>
 		</div>
 	</div>
 	</form>
-	<!-- Java Scripts Below -->
-	<script type="text/javascript">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+{% endblock %}
+
+{% block 'custom_addorder_script' %}
+<script type="text/javascript">
 //--------------------------------------------------------------------------//
 		//Pickup Address Form Filling
 
@@ -320,6 +327,5 @@
 
 	UpdateAddress2();
 
-	</script>
-</body>
-</html>
+</script>
+{% endblock %}

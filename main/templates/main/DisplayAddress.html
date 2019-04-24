@@ -40,12 +40,10 @@
 		<th>ID</th>
 		<th>Name</th>
 		<th>Address</th>
-		<!-- <th>Country</th>
-		<th>State</th>
-		<th>City</th> -->
 		<th>Pin Code</th>
 		<th>Phone Number</th>
 		<th>E-mail</th>
+		<th>Manage</th>
 
 	</tr>
 		{% for a in addresses %}
@@ -53,14 +51,10 @@
 			<td>{{a.id}}</td>
 			<td>{{a.name}}</td>
 			<td>{{a.address}}, {{a.city}}, {{a.state}}</td>
-			<!-- <td>{{a.country}}</td>
-			<td>{{a.state}}</td>
-			<td>{{a.city}}</td> -->
 			<td>{{a.pincode}}</td>
 			<td>{{a.phone}}</td>
 			<td>{{a.email}}</td>
-			<!-- <td><a href="/updateaddress/{{a.id}}">Edit</a></td>
-			<td><a href="/deleteaddress/{{a.id}}">Delete</a></td> -->
+			<td><a href="/updateaddress/{{a.id}}"><i class="fa fa-pencil-square-o" title="Edit Address" /></i> </a>|<a href="/deleteaddress/{{a.id}}"> <i class="fa fa-trash-o" title="Delete Address" /></i></a></td>
 	</tr>
 		{% endfor %}
 </table>

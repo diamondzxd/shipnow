@@ -106,7 +106,7 @@
                             <a href="/" class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="/displayaddress/" class="waves-effect"><i class="fa fa-user m-r-10" aria-hidden="true"></i>Manage Addresses</a>
+                            <a href="/displayaddress/" class="waves-effect"><i class="fa fa-building-o m-r-10" aria-hidden="true"></i>Manage Addresses</a>
                         </li>
                         <li>
                             <a href="table-basic.html" class="waves-effect"><i class="fa fa-table m-r-10" aria-hidden="true"></i>Basic Table</a>
@@ -183,6 +183,9 @@
     <script src="{% static '/assets/plugins/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
     <!--Custom JavaScript -->
     <script src="{% static 'js/custom.min.js' %}"></script>
+    {% block 'custom_addorder_script' %}
+    {% endblock %}
+    
     <!-- ============================================================== -->
     <!-- Style switcher -->
     <!-- ============================================================== -->
