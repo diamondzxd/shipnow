@@ -22,7 +22,13 @@ Products:
 	height
 
 Order Model:
-	{details}
+	id
+	pickup -- Foreign key to Address
+	delivery -- Foreign key to Address
+	product -- Foreign key to Product
+	payment_mode - whether COD or Prepaid
+	amount -- Total amount including Shipping Charges and GST as applicable.
+	datetime -- Order Date
 
 Shipment Model:
 	Order
