@@ -179,7 +179,7 @@ def AddOrder(request):
 		now=datetime.datetime.now()
 		order.datetime = now.strftime("%Y-%m-%d %H:%M")
 		order.save()
-		return redirect('createshipment/'+str(order.id))
+		return redirect('/displayorder/')
 
 #--------------------------------------------------------------------------			
 # Form's GET Part Below
