@@ -330,7 +330,7 @@ def CreateShipment(request,oid):
 	# To use doctab stocks, you must change ImageType above to one of the
 	# label printer formats (ZPLII, EPL2, DPL).
 	# See documentation for paper types, there quite a few.
-	shipment.RequestedShipment.LabelSpecification.LabelStockType = 'PAPER_7X4.75'
+	shipment.RequestedShipment.LabelSpecification.LabelStockType = 'PAPER_8.5X11_TOP_HALF_LABEL'
 
 	# This indicates if the top or bottom of the label comes out of the 
 	# printer first.
@@ -462,6 +462,9 @@ def CreateShipment(request,oid):
 	out_file = open(out_path, 'wb')
 	out_file.write(label_binary_data)
 	out_file.close()
+	return HttpResponse(label_binary_data, content_type='application/pdf')
+
+
 
 	"""
 	This is an example of how to print the label to a serial printer. This will not
@@ -484,7 +487,7 @@ def CreateShipment(request,oid):
 	# print("SELECTED SERIAL PORT: "+ label_printer.portstr)
 	# label_printer.write(label_binary_data)
 	# label_printer.close()
-	return HttpResponse('Shipment Created Succesfully! Tracking Number : ' + str(shipment.response.CompletedShipmentDetail.CompletedPackageDetails[0].TrackingIds[0].TrackingNumber))
+	# return HttpResponse('Shipment Created Succesfully! Tracking Number : ' + str(shipment.response.CompletedShipmentDetail.CompletedPackageDetails[0].TrackingIds[0].TrackingNumber))
 
 def DeleteOrder(request,id):
 	try:
