@@ -40,6 +40,7 @@ urlpatterns = [
     #Orders
     path('addorder/',main.AddOrder),
     path('displayorder/',main.DisplayOrder),
+    path('deleteorder/<id>',main.DeleteOrder),
 
     #Shipments
     path('createshipment/<oid>',main.CreateShipment)

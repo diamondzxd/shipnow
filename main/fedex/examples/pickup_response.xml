@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+   <SOAP-ENV:Header />
+   <SOAP-ENV:Body>
+      <v17:CreatePickupReply xmlns:v17="http://fedex.com/ws/pickup/v17">
+         <v17:HighestSeverity>ERROR</v17:HighestSeverity>
+         <v17:Notifications>
+            <v17:Severity>ERROR</v17:Severity>
+            <v17:Source>prof</v17:Source>
+            <v17:Code>1000</v17:Code>
+            <v17:Message>Authentication Failed</v17:Message>
+         </v17:Notifications>
+         <v17:Version>
+            <v17:ServiceId>disp</v17:ServiceId>
+            <v17:Major>17</v17:Major>
+            <v17:Intermediate>0</v17:Intermediate>
+            <v17:Minor>0</v17:Minor>
+         </v17:Version>
+      </v17:CreatePickupReply>
+   </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>

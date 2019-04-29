@@ -1,27 +1,74 @@
+{% extends 'main/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
-</head>
-<body>
-<h2>Displaying all the Products!</h2>
+
+{% block 'title' %}ShipNow - Displaying Addresses{% endblock %}
+{% block 'container' %}
+	
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+
+    <div class="row page-titles">	
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Manage Address</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+                <li class="breadcrumb-item">Address</li>
+                <li class="breadcrumb-item active">Manage</li>
+            </ol>
+        </div>
+        <div class="col-md-6 col-4 align-self-center">
+            <a href="/addproduct/" class="btn pull-right hidden-sm-down btn-success"> Add Product</a>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+         
+	<!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-block">
+
 
 
 <table class="table table-bordered table-hover">
-	<tr>
+	<tr class="table-info">
 		<th>ID</th>
 		<th>Name</th>
 		<th>Price</th>
 		<th>SKU</th>
 		<th>HSN</th>
-		<th>Weight (KG)</th>
+		<th>Weight</th>
 		<th>Dimensions</th>
-		<th>Edit</th>
-		<th>Delete</th>
+		<th>Manage</th>
 
-		</tr>
+	</tr>
+		{% for a in products %}
+	<tr>
+			<td>{{a.id}}</td>
+			<td>{{a.name}}</td>
+			<td>{{a.price}}</td>
+			<td>{{a.sku}}</td>
+			<td>{{a.hsn}}</td>
+			<td>{{a.weight}} KG</td>
+			<td>{{a.length}} x {{a.breadth}} x {{a.height}} cm</td>
+			<td><a href="/updateproduct/{{a.id}}"><i class="fa fa-pencil-square-o" title="Edit Address" /></i> </a>|<a href="/deleteproduct/{{a.id}}"> <i class="fa fa-trash-o" title="Delete Address" /></i></a></td>
+	</tr>
+		{% endfor %}
+</table>
+	        
+	    </div>
+	</div>
+	</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End PAge Content -->
+	<!-- ============================================================== -->
+{% endblock %}
 		{% for a in products %}
 		<tr>
 			<td>{{a.id}}</td>
@@ -35,6 +82,3 @@
 			<td><a href="/deleteproduct/{{a.id}}">Delete</a></td>
 		</tr>
 		{% endfor %}
-</table>
-</body>
-</html>

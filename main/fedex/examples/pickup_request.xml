@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns0="http://schemas.xmlsoap.org/soap/envelope/" xmlns:ns1="http://fedex.com/ws/pickup/v17" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+   <ns0:Body>
+      <ns1:CreatePickupRequest>
+         <ns1:WebAuthenticationDetail>
+            <ns1:ParentCredential>
+               <ns1:Key>***REMOVED***</ns1:Key>
+               <ns1:Password>***REMOVED***</ns1:Password>
+            </ns1:ParentCredential>
+            <ns1:UserCredential>
+               <ns1:Key>***REMOVED***</ns1:Key>
+               <ns1:Password>***REMOVED***</ns1:Password>
+            </ns1:UserCredential>
+         </ns1:WebAuthenticationDetail>
+         <ns1:ClientDetail>
+            <ns1:AccountNumber>***REMOVED***</ns1:AccountNumber>
+            <ns1:MeterNumber>***REMOVED***</ns1:MeterNumber>
+         </ns1:ClientDetail>
+         <ns1:Version>
+            <ns1:ServiceId>disp</ns1:ServiceId>
+            <ns1:Major>17</ns1:Major>
+            <ns1:Intermediate>0</ns1:Intermediate>
+            <ns1:Minor>0</ns1:Minor>
+         </ns1:Version>
+         <ns1:OriginDetail>
+            <ns1:PickupLocation>
+               <ns1:Contact>
+                  <ns1:PersonName>Murli Aggarwal</ns1:PersonName>
+                  <ns1:CompanyName>Honest Computers</ns1:CompanyName>
+                  <ns1:PhoneNumber>9891413700</ns1:PhoneNumber>
+                  <ns1:EMailAddress>admin@oldlappy.com</ns1:EMailAddress>
+               </ns1:Contact>
+               <ns1:Address>
+                  <ns1:StreetLines>D-12/79, Sec-7, Rohini</ns1:StreetLines>
+                  <ns1:StreetLines>Delhi</ns1:StreetLines>
+                  <ns1:City>New Delhi</ns1:City>
+                  <ns1:StateOrProvinceCode>DL</ns1:StateOrProvinceCode>
+                  <ns1:PostalCode>110085</ns1:PostalCode>
+                  <ns1:CountryCode>IN</ns1:CountryCode>
+                  <ns1:Residential>false</ns1:Residential>
+               </ns1:Address>
+            </ns1:PickupLocation>
+            <ns1:PackageLocation>FRONT</ns1:PackageLocation>
+            <ns1:BuildingPart>BUILDING</ns1:BuildingPart>
+            <ns1:ReadyTimestamp>2019-04-25T14:03:06</ns1:ReadyTimestamp>
+            <ns1:CompanyCloseTime>18:00:00</ns1:CompanyCloseTime>
+         </ns1:OriginDetail>
+         <ns1:PackageCount>1</ns1:PackageCount>
+         <ns1:TotalWeight>
+            <ns1:Units>KG</ns1:Units>
+            <ns1:Value>3</ns1:Value>
+         </ns1:TotalWeight>
+         <ns1:CarrierCode>FDXE</ns1:CarrierCode>
+         <ns1:CommodityDescription>asdf</ns1:CommodityDescription>
+         <ns1:CountryRelationship>DOMESTIC</ns1:CountryRelationship>
+      </ns1:CreatePickupRequest>
+   </ns0:Body>
+</SOAP-ENV:Envelope>
