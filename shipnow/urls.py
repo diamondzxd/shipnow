@@ -47,7 +47,8 @@ urlpatterns = [
     path('deleteorder/<id>',main.DeleteOrder),
 
     #Shipments
-    path('createshipment/<oid>',main.CreateShipment)
+    path('createshipment/<oid>',main.CreateShipment),
+    path('fetchorders/',main.FetchOrder),
     
 ]
 

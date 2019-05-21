@@ -9,7 +9,7 @@ import datetime
 
 #Index Page
 def Index(request):
-	return render(request,'main/base.html',None)
+	return render(request,'main/shipnow-index.html',None)
 
 # Addresses
 def AddAddress(request):
@@ -496,3 +496,9 @@ def DeleteOrder(request,id):
 		return redirect('/displayorder')
 	except:
 		return HttpResponse("Order does not Exists!")
+
+#For Ajax Requests, API Endpoint
+def FetchOrder(request):
+	orders = serializers.serialize("python", Order.objects.all())
+	data = {"orders": orders}
+	return JsonResponse(data,safe=False)

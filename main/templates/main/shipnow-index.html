@@ -1,0 +1,46 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block 'title' %}ShipNow - Displaying Orders{% endblock %}
+{% block 'container' %}
+	
+    <!-- ============================================================== -->
+    <!-- Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+
+    <div class="row page-titles">	
+        <div class="col-md-6 col-8 align-self-center">
+            <h3 class="text-themecolor m-b-0 m-t-0">Welcome to Shipnow!	</h3>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>  
+            </ol>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Bread crumb and right sidebar toggle -->
+    <!-- ============================================================== -->
+         
+	<!-- ============================================================== -->
+    <!-- Start Page Content -->
+    <!-- ============================================================== -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-block">
+                <h4>Welcome to <strong>Shipnow</strong> Logistics Management System!</h4><br>
+                <ul>
+                	<li>
+                		<p>To create a Shipment, create an Order and click on the Shipnow button.</p>
+                	</li>
+                	<li>
+                		<p>Addresses and Products can be Managed from the Links on the sidebar.</p>
+                	</li>
+                </ul>
+	    		</div>
+			</div>
+		</div>
+	</div>
+	<!-- ============================================================== -->
+	<!-- End PAge Content -->
+	<!-- ============================================================== -->
+	{% endblock %}
