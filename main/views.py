@@ -53,7 +53,7 @@ def DeleteAddress(request,id):
 
 #For Ajax Requests, API Endpoint
 def FetchAddress(request):
-	addresses = serializers.serialize("python", Address.objects.all())
+	addresses = serializers.serialize("json", Address.objects.all())
 	data = {"addresses": addresses}
 	return JsonResponse(data,safe=False)
 
@@ -99,7 +99,7 @@ def DeleteProduct(request,id):
 		return HttpResponse("Product does not Exists!")
 
 def FetchProduct(request):
-	products = serializers.serialize("python", Product.objects.all())
+	products = serializers.serialize("json", Product.objects.all())
 	data = {"products": products}
 	return JsonResponse(data,safe=False)
 
