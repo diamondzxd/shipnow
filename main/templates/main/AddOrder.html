@@ -25,172 +25,173 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<div class="row">
+<form method="post" novalidate>
+{% csrf_token %}
+	<div class="row" id="order_form">
 
-    <div class="col-4">
-        <div class="card">
-            <div class="card-block">
-                <form method="post" novalidate>
-					{% csrf_token %}
-					<div class="form-group">
-						<select id="pickup_address_selector" name="pickup_address_selector" class="form-control">
-							<option value="0">Select Pickup Address</option>
-							{% for address in addresses %}
-								<option value="{{address.id}}">{{address.name}}</option>
-							{% endfor %}
+	    <div class="col-4">
+	        <div class="card">
+	            <div class="card-block">
+						<div class="form-group">
+							<select id="pickup_address_selector" name="pickup_address_selector" class="form-control">
+								<option value="0">Select Pickup Address</option>
+								{% for address in addresses %}
+									<option value="{{address.id}}">{{address.name}}</option>
+								{% endfor %}
+							</select>
+						</div>
+						<hr>
+						<div class="form-group">
+							<center>OR</center>
+						</div>
+
+						<div class="form-group">
+							{{addressform1.name}}
+						</div>
+						<div class="form-group">
+							{{addressform1.address}}
+						</div>
+						<div class="form-group">
+							{{addressform1.country}}
+						</div>
+						<div class="form-group">
+							{{addressform1.state}}
+						</div>
+						<div class="form-group">
+							{{addressform1.city}}
+						</div>
+						<div class="form-group">
+							{{addressform1.pincode}}
+						</div>
+						<div class="form-group">
+							{{addressform1.phone}}
+						</div>
+						<div class="form-group">
+							{{addressform1.email}}
+						</div>
+						<div class="form-group">
+						    <input type="checkbox" id="pickup_save" value="True">
+						    <label for="pickup_save">Save Pickup Address</label>
+						</div>
+	            </div>
+	        </div>
+	    </div>
+
+	    <div class="col-4">
+	        <div class="card">
+	            <div class="card-block">
+	            	<div class="form-group">
+					<select id="delivery_address_selector" name="delivery_address_selector" class="form-control">
+						<option value="0">Select Delivery Address</option>
+						{% for address in addresses %}
+							<option value="{{address.id}}">{{address.name}}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<hr>
+				<div class="form-group">
+					<center>OR</center>
+				</div>
+
+				<div class="form-group">
+					{{addressform2.name}}
+				</div>
+				<div class="form-group">
+					{{addressform2.address}}
+				</div>
+				<div class="form-group">
+					{{addressform2.country}}
+				</div>
+				<div class="form-group">
+					{{addressform2.state}}
+				</div>
+				<div class="form-group">
+					{{addressform2.city}}
+				</div>
+				<div class="form-group">
+					{{addressform2.pincode}}
+				</div>
+				<div class="form-group">
+					{{addressform2.phone}}
+				</div>
+				<div class="form-group">
+					{{addressform2.email}}
+				</div>
+				<div class="form-group">
+				    <input type="checkbox" id="delivery_save" value="True">
+				    <label for="delivery_save" style="font-weight: 400;">Save Delivery Address</label>
+				</div>
+			</div>
+	        </div>
+	    </div>
+
+	    <div class="col-4">
+	        <div class="card">
+	            <div class="card-block">
+	            	<div class="form-group">
+						<select name="product_selector" class="form-control" id="product_selector">
+						<option value="0">Select Product</option>
+						{% for product in products %}
+							<option value="{{product.id}}">{{product.name}}</option>
+						{% endfor %}
 						</select>
 					</div>
 					<hr>
 					<div class="form-group">
-						<center>OR</center>
-					</div>
-
-					<div class="form-group">
-						{{addressform1.name}}
+					<center>OR</center>
 					</div>
 					<div class="form-group">
-						{{addressform1.address}}
+						{{productform.name}}
 					</div>
 					<div class="form-group">
-						{{addressform1.country}}
+						{{productform.price}}
 					</div>
 					<div class="form-group">
-						{{addressform1.state}}
+						{{productform.sku}}
 					</div>
 					<div class="form-group">
-						{{addressform1.city}}
+						{{productform.hsn}}
 					</div>
 					<div class="form-group">
-						{{addressform1.pincode}}
+						{{productform.weight}}
+					</div>
+					<div class="row">
+						<div class="form-group col-sm-4">
+							{{productform.length}}
+						</div>
+						<div class="form-group col-sm-4">
+							{{productform.breadth}}
+						</div>
+						<div class="form-group col-sm-4">
+							{{productform.height}}
+						</div>
 					</div>
 					<div class="form-group">
-						{{addressform1.phone}}
-					</div>
+					    <input type="checkbox" id="product_save" value="True">
+					    <label for="product_save">Save Product</label><br></div>
+					    <hr>
 					<div class="form-group">
-						{{addressform1.email}}
+							<select name="payment_mode" class="form-control" id="payment_mode">
+							<option value="0">Select Payment Method</option>
+							<option value="prepaid">Pre-Paid</option>
+							<option value="cod">Cash on Delivery</option>
+							</select>
 					</div>
+			
 					<div class="form-group">
-					    <input type="checkbox" id="pickup_save" value="True">
-					    <label for="pickup_save">Save Pickup Address</label>
+						<input type="number" name="order_amount" id="order_amount" placeholder="Enter Order Invoice Amount (₹)" class="form-control">
 					</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-4">
-        <div class="card">
-            <div class="card-block">
-            	<div class="form-group">
-				<select id="delivery_address_selector" name="delivery_address_selector" class="form-control">
-					<option value="0">Select Delivery Address</option>
-					{% for address in addresses %}
-						<option value="{{address.id}}">{{address.name}}</option>
-					{% endfor %}
-				</select>
-			</div>
-			<hr>
-			<div class="form-group">
-				<center>OR</center>
-			</div>
-
-			<div class="form-group">
-				{{addressform2.name}}
-			</div>
-			<div class="form-group">
-				{{addressform2.address}}
-			</div>
-			<div class="form-group">
-				{{addressform2.country}}
-			</div>
-			<div class="form-group">
-				{{addressform2.state}}
-			</div>
-			<div class="form-group">
-				{{addressform2.city}}
-			</div>
-			<div class="form-group">
-				{{addressform2.pincode}}
-			</div>
-			<div class="form-group">
-				{{addressform2.phone}}
-			</div>
-			<div class="form-group">
-				{{addressform2.email}}
-			</div>
-			<div class="form-group">
-			    <input type="checkbox" id="delivery_save" value="True">
-			    <label for="delivery_save" style="font-weight: 400;">Save Delivery Address</label>
-			</div>
-		</div>
-        </div>
-    </div>
-
-    <div class="col-4">
-        <div class="card">
-            <div class="card-block">
-            	<div class="form-group">
-			<select name="product_selector" class="form-control" id="product_selector">
-				<option value="0">Select Product</option>
-				{% for product in products %}
-					<option value="{{product.id}}">{{product.name}}</option>
-				{% endfor %}
-			</select>
-		</div>
-		<hr>
-			<div class="form-group">
-			<center>OR</center>
-			</div>
-			<div class="form-group">
-				{{productform.name}}
-			</div>
-			<div class="form-group">
-				{{productform.price}}
-			</div>
-			<div class="form-group">
-				{{productform.sku}}
-			</div>
-			<div class="form-group">
-				{{productform.hsn}}
-			</div>
-			<div class="form-group">
-				{{productform.weight}}
-			</div>
-			<div class="row">
-				<div class="form-group col-sm-4">
-					{{productform.length}}
-				</div>
-				<div class="form-group col-sm-4">
-					{{productform.breadth}}
-				</div>
-				<div class="form-group col-sm-4">
-					{{productform.height}}
+					<div>
+						<button type="button" class="btn btn-primary" onclick="test();">Select Courier</button>
+					</div>
 				</div>
 			</div>
-			<div class="form-group">
-			    <input type="checkbox" id="product_save" value="True">
-			    <label for="product_save">Save Product</label><br></div>
-			    <hr>
-			<div class="form-group">
-				<select name="payment_mode" class="form-control" id="payment_mode">
-						<option value="0">Select Payment Method</option>
-						<option value="prepaid">Pre-Paid</option>
-						<option value="cod">Cash on Delivery</option>
-				</select>
-			</div>
-		
-			<div class="form-group">
-				<input type="number" name="order_amount" id="order_amount" placeholder="Enter Order Invoice Amount (₹)" class="form-control">
-			</div>
-			<div>
-				<button class="btn btn-primary" type="submit">Submit!</button>
-			</div>
-		</div>
+	    </div>
 	</div>
-	</form>
-            </div>
-        </div>
-    </div>
-</div>
+</form>
+
+
+    
 <!-- ============================================================== -->
 <!-- End PAge Content -->
 <!-- ============================================================== -->
@@ -326,6 +327,10 @@
 	
 
 	UpdateAddress2();
+
+	function test(){
+		$("#order_form").slideUp(300);
+	}
 
 </script>
 {% endblock %}
