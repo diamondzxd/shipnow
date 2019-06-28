@@ -12,6 +12,9 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from fedex.config import FedexConfig
 
 # Change these values to match your testing account/meter number.
+
+# Testing Credentials!
+
 CONFIG_OBJ = FedexConfig(key='***REMOVED***',
                          password='***REMOVED***',
                          account_number='***REMOVED***',

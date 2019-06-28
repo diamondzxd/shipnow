@@ -25,7 +25,7 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-<form method="post" novalidate>
+<form method="post">
 {% csrf_token %}
 	<div class="row" id="order_form">
 
@@ -182,7 +182,7 @@
 						<input type="number" name="order_amount" id="order_amount" placeholder="Enter Order Invoice Amount (₹)" class="form-control">
 					</div>
 					<div>
-						<button type="button" class="btn btn-primary" onclick="test();">Select Courier</button>
+						<button type="submit" class="btn btn-primary">Select Courier</button>
 					</div>
 				</div>
 			</div>
@@ -324,13 +324,7 @@
 			fields[i].name=fields[i].id;
 		}
 	}
-	
 
 	UpdateAddress2();
-
-	function test(){
-		$("#order_form").slideUp(300);
-	}
-
 </script>
 {% endblock %}

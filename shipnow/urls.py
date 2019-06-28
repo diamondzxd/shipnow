@@ -48,6 +48,7 @@ urlpatterns = [
 
     #Shipments
     path('createshipment/<oid>',main.CreateShipment),
+    path('createshipment/<oid>/<courier>',main.CreateShipmentFinal),
     path('fetchorders/',main.FetchOrder),
     
 ]

@@ -1,0 +1,120 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block 'title' %}Create Shipment{% endblock %}
+{% block 'container' %}       
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+
+<div class="row page-titles">
+    <div class="col-md-6 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </div>
+    <div class="col-md-6 col-4 align-self-center">
+        <a href="https://wrappixel.com/templates/monsteradmin/" class="btn pull-right hidden-sm-down btn-danger" style="margin:10px;"> Cancel Order</a>
+        <a href="https://wrappixel.com/templates/monsteradmin/" class="btn pull-right hidden-sm-down btn-warning" style="margin:10px;"> Edit Order</a>
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row" id="courier_form">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-block">
+				<div class="form-group">
+					<table class="table table-bordered table-hover">
+						<tr class="table-info">
+							<th>Courier</th>
+							<th>Price</th>
+							<th>Ship</th>
+						</tr>
+
+						{% for key,value in couriers.items %}
+							<tr>
+                                <!-- courier -->
+    							<td>
+    								<img src="/cdn/{{key}}.png" width="150">
+    								{{key}}
+    							</td>
+                                <!-- cost -->
+                                <td>
+                                    ₹ {{value}}
+                                </td>
+                                <td>
+                                    <a href="/createshipment/{{order.id}}/{{key}}" class="btn hidden-sm-down btn-info"> Ship Now</a>
+                                </td>
+                            </tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-3">
+		<div class="card">
+            <div class="card-block">
+            	<div class="form-group">
+            		<b><u>Pickup Details</u></b>
+            	</div>
+            	<div class="form-group">
+            		{{order.pickup.name}}<br>
+            		{{order.pickup.address}}<br>
+            		{{order.pickup.city}}<br>
+            		{{order.pickup.state}}<br>
+            		{{order.pickup.pincode}}<br>
+            		{{order.pickup.phone}}<br>
+            		{{order.pickup.email}}<br><br>
+            		{{order.pickup.country}}
+            	</div>
+            	<div class="form-group">
+            		<b><u>Shipment Details</u></b><br>
+            		{{order.product.name}}<br>
+            		<b>Weight</b> : {{order.product.weight}}KG<br>
+            		<b>Dimensions</b> : {{order.product.length}} X {{order.product.breadth}} X {{order.product.height}}<br>
+            		<b>Order Value : </b>{{order.amount}}<br>
+            		<b>Payment Method</b> : {{order.payment_mode}}
+            	</div>
+            </div>
+        </div>
+	</div>
+
+	<div class="col-3">
+		<div class="card">
+            <div class="card-block">
+            	<div class="form-group">
+            		<b><u>Delivery Details</u></b>
+            	</div>
+            	<div class="form-group">
+            		{{order.delivery.name}}<br>
+            		{{order.delivery.address}}<br>
+            		{{order.delivery.city}}<br>
+            		{{order.delivery.state}}<br>
+            		{{order.delivery.pincode}}<br>
+            		{{order.delivery.phone}}<br>
+            		{{order.delivery.email}}<br><br>
+            		{{order.delivery.country}}
+            	</div>
+            </div>
+        </div>
+	</div>
+</div>
+
+
+    
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+{% endblock %}
+
+{% block 'custom_addorder_script' %}
+{% endblock %}
