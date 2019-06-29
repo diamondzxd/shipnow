@@ -235,7 +235,20 @@ def CreateShipment(request,oid):
 			                couriers.update(FX_Road=(50+(46*order.product.weight)) if (50+(46*order.product.weight)) >= 50+92 else 50+92)
 
 		# Delhivery Courier
-		couriers.update(Delhivery=100+(2*(order.amount)/100))
+		import requests
+		surface_token='***REMOVED***'
+		heavy_token='***REMOVED***'
+		response = requests.get('https://staging-express.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
+		response = response.json()
+		service=response['delivery_codes'][0]['postal_code']['cod']
+		headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
+		response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
+		response = response.json()
+		a=response[0]['total_amount']
+		couriers.update(Delhivery=a)
+		couriers.update(Delhivery5KG='200 (upto 5 KG) after that 30 Rs./KG')
+
+
 
 
 	if(order.payment_mode=='prepaid'):
@@ -877,10 +890,34 @@ def CreateShipmentFinal(request,oid,courier):
 
 
 	elif courier =='Delhivery':
-		return HttpResponse(123)
+		import requests
+		surface_token='***REMOVED***'
+		heavy_token='***REMOVED***'
+		if(order.payment_mode=='cod'):
+			response = requests.get('https://staging-express.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
+			response = response.json()
+			service=response['delivery_codes'][0]['postal_code']['cod']
+			headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
+			response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
+			response = response.json()
+			a=response[0]['total_amount']
 
-	else:
-		return HttpResponse('nothing.')
+			return HttpResponse("to be implemented")
+
+
+	elif courier == 'Delhivery5KG':
+		import requests
+		surface_token='***REMOVED***'
+		heavy_token='***REMOVED***'
+		if(order.payment_mode=='cod'):
+			response = requests.get('https://staging-express.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
+			response = response.json()
+			service=response['delivery_codes'][0]['postal_code']['cod']
+			headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
+			response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
+			response = response.json()
+			a=response[0]['total_amount']
+			return HttpResponse('nothing.')
 
 
 
