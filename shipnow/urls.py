@@ -52,6 +52,7 @@ urlpatterns = [
     path('createshipment/<oid>/<courier>',main.CreateShipmentFinal),
     path('displayshipments/',main.DisplayShipments),
     path('displayshipments/<sid>',main.DisplayShipmentDetail),
+    # path('test',main.GeneratePdf.as_view()),
     
 ]
 

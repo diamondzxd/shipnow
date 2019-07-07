@@ -6,6 +6,7 @@ from django.core import serializers
 import json
 import datetime
 from textwrap import wrap
+from main.utils import render_to_pdf
 # Create your views here.
 
 #Index Page
@@ -925,12 +926,52 @@ def CreateShipmentFinal(request,oid,courier):
 
 	elif courier =='DelhiverySF':
 		import requests
+		import json
 		surface_token='***REMOVED***'
-		heavy_token='***REMOVED***'
-		if(order.payment_mode=='cod'):			
-			return HttpResponse("delhivery cod part")
+		if(order.payment_mode=='cod'):
+			payment = 'COD'
 		else:
-			return HttpResponse("delhivery prepaid part")
+			payment = 'Prepaid'
+
+		send_data={
+  			"shipments": [
+		    {
+		      "city": order.delivery.city,
+		      "commodity_value": order.amount,
+		      "weight": int(order.product.weight*1000),
+		      "add": order.delivery.address,
+		      "phone": order.delivery.phone,
+		      "payment_mode": payment,
+		      "name": order.delivery.name,
+		      "seller_name": "Honest Computers",
+		      "return_city": "New Delhi",
+		      "return_phone": "9891413700",
+		      "cod_amount": order.amount,
+		      "pin": order.delivery.pincode,
+		      "state": order.delivery.state,
+		      "total_amount": order.amount,
+		      "seller_add": "D-12/79, Sector-7, Rohini, Delhi",
+		      "country": "India",
+		      "client": "HONESTCOMPUTERS SURFACE",
+		      "order": "test",
+		    }
+		  ],
+			  "pickup_location": 
+			    {
+			      # "city": "Delhi",
+			      "name": "HONESTCOMPUTERS SURFACE",
+			      # "pin": "110085",
+			      # "country": "India",
+			      # "phone": "9891413700",
+			      # "add": "D-12/79, Sector-7, Rohini, Delhi"
+		    	}
+		}
+
+		headers = {'content-type' : 'application/json','Authorization' : 'Token '+surface_token}
+		response=requests.post('https://staging-express.delhivery.com/api/cmu/create.json',data='format=json&data='+str(json.dumps(send_data)),headers=headers)
+		print(json.dumps(send_data))
+		return HttpResponse(response.text)
+
 
 
 	elif courier == 'Delhivery5KG':
@@ -953,3 +994,15 @@ def DisplayShipmentDetail(request,sid):
 	data = {}
 	data['shipment'] = shipment
 	return render(request,'main/DisplayShipmentDetail.html',data)
+
+# from main.utils import render_to_pdf
+# class GeneratePdf(View):
+# 	def get(self, request, *args, **kwargs):
+# 		data = {
+# 			'today': datetime.date.today(), 
+# 			'amount': 39.99,
+# 			'customer_name': 'Cooper Mann',
+# 			'order_id': 1233434
+# 			}
+# 		pdf = render_to_pdf('pdf/label.html',data)
+# 		return HttpResponse(pdf, content_type='application/pdf')
