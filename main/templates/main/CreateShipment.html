@@ -37,23 +37,30 @@
 							<th>Price</th>
 							<th>Ship</th>
 						</tr>
+                        {% if couriers %}
+    						{% for key,value in couriers.items %}
+    							<tr>
+                                    <!-- courier -->
+        							<td>
+        								<img src="/cdn/{{key}}.png" width="150">
+        								{{key}}
+        							</td>
+                                    <!-- cost -->
+                                    <td>
+                                        ₹ {{value}}
+                                    </td>
+                                    <td>
+                                        <a href="/createshipment/{{order.id}}/{{key}}" class="btn hidden-sm-down btn-info"> Ship Now</a>
+                                    </td>
+                                </tr>
+    						{% endfor %}
+                        {% endif %}
+                        {% if no_service %}
+                            <td>
+                                This Pincode is not serviceable :(
+                            </td>
 
-						{% for key,value in couriers.items %}
-							<tr>
-                                <!-- courier -->
-    							<td>
-    								<img src="/cdn/{{key}}.png" width="150">
-    								{{key}}
-    							</td>
-                                <!-- cost -->
-                                <td>
-                                    ₹ {{value}}
-                                </td>
-                                <td>
-                                    <a href="/createshipment/{{order.id}}/{{key}}" class="btn hidden-sm-down btn-info"> Ship Now</a>
-                                </td>
-                            </tr>
-						{% endfor %}
+                        {% endif %}
 					</table>
 				</div>
 			</div>

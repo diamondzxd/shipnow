@@ -1,0 +1,118 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block 'title' %}Create Shipment{% endblock %}
+{% block 'container' %}       
+<!-- ============================================================== -->
+<!-- Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+
+<div class="row page-titles">
+    <div class="col-md-6 col-8 align-self-center">
+        <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </div>
+    <div class="col-md-6 col-4 align-self-center">
+        <!-- <a href="https://wrappixel.com/templates/monsteradmin/" class="btn pull-right hidden-sm-down btn-danger" style="margin:10px;"> Cancel Order</a>
+        <a href="https://wrappixel.com/templates/monsteradmin/" class="btn pull-right hidden-sm-down btn-warning" style="margin:10px;"> Edit Order</a> -->
+    </div>
+</div>
+<!-- ============================================================== -->
+<!-- End Bread crumb and right sidebar toggle -->
+<!-- ============================================================== -->
+<!-- ============================================================== -->
+<!-- Start Page Content -->
+<!-- ============================================================== -->
+<div class="row" id="shipment">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-block">
+                <h2>Courier</h2>
+                    <img src="/cdn/{{shipment.courier}}.png" width="200px"><br>
+                    {{shipment.courier}}
+            </div>
+		</div>
+    </div>
+
+    <div class="col-5">
+        <div class="card">
+            <div class="card-block">
+                <div class="form-group">
+                    <h2>Details</h2>
+                    Tracking number : <b>{{shipment.awb}}</b><br>
+                    Tracking status : <b>Booked</b><br>
+                    Booked On : <b>{{shipment.order.datetime}}</b><br>
+                    Item Description : <b>{{shipment.order.product.name}}</b><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-block">
+                <div class="form-group">
+                    Order ID : <b>{{shipment.order.id}}</b><br>
+                    Weight : <b>{{shipment.order.product.weight}} KG</b><br>
+                    Dimensions : <b>{{shipment.order.product.length}} cm X {{shipment.order.product.breadth}} cm X {{shipment.order.product.height}} cm</b><br>
+                    Shipment Value : <b>{{shipment.order.amount}}</b><br>
+                    Payment Method : <b>{{shipment.order.payment_mode}}</b><br>
+                    Destination City : <b>{{shipment.order.delivery.city}}</b>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<center><a href="/cdn/labels/{{shipment.awb}}.pdf" target="_blank" class="btn hidden-sm-down btn-success" style="width: 25%"> Download Shipping Label</a></center>
+
+<hr>
+
+<div class="row form-group" id="shipment">
+    <div class="col-3">
+        <div class="card">
+            <div class="card-block">
+                <h2>Pickup Details</h2>
+                    <div class="form-group">{{shipment.order.pickup.name}}</div>
+                    <div class="form-group">{{shipment.order.pickup.address}}, {{shipment.order.pickup.city}}, {{shipment.order.pickup.state}} - {{shipment.order.pickup.pincode}}</div>
+                    +91-{{shipment.order.pickup.phone}}<br>
+                    {{shipment.order.pickup.email}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-3">
+        <div class="card">
+            <div class="card-block">
+                <h2>Delivery Details</h2>
+                    <div class="form-group">{{shipment.order.delivery.name}}</div>
+                    <div class="form-group">{{shipment.order.delivery.address}}, {{shipment.order.delivery.city}}, {{shipment.order.delivery.state}} - {{shipment.order.delivery.pincode}}</div>
+                    +91-{{shipment.order.delivery.phone}}<br>
+                    {{shipment.order.delivery.email}}
+            </div>
+        </div>
+    </div>
+
+    <div class="col-6">
+        <div class="card">
+            <div class="card-block">
+                <h2>Shipment Tracking</h2>
+                    coming soon...
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+<!-- ============================================================== -->
+<!-- End PAge Content -->
+<!-- ============================================================== -->
+{% endblock %}
+
+{% block 'custom_addorder_script' %}
+{% endblock %}

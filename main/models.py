@@ -31,3 +31,8 @@ class Order(models.Model):
 	payment_mode=models.CharField(max_length=40)
 	amount=models.IntegerField()
 	datetime=models.DateTimeField()
+
+class Shipment(models.Model):
+	order=models.ForeignKey(Order,on_delete=models.PROTECT)
+	awb=models.CharField(max_length=30)
+	courier=models.CharField(max_length=40)

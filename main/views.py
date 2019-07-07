@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import AddressForm,ProductForm
-from .models import Address,Product,Order
+from .models import Address,Product,Order,Shipment
 from django.http import HttpResponse,JsonResponse
 from django.core import serializers
 import json
@@ -180,7 +180,7 @@ def AddOrder(request):
 		now=datetime.datetime.now()
 		order.datetime = now.strftime("%Y-%m-%d %H:%M")
 		order.save()
-		return redirect('/displayorder/')
+		return redirect('/createshipment/'+str(order.id))
 
 #--------------------------------------------------------------------------			
 # Form's GET Part Below
@@ -238,15 +238,20 @@ def CreateShipment(request,oid):
 		import requests
 		surface_token='***REMOVED***'
 		heavy_token='***REMOVED***'
-		response = requests.get('https://staging-express.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
-		response = response.json()
-		service=response['delivery_codes'][0]['postal_code']['cod']
-		headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
-		response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
-		response = response.json()
-		a=response[0]['total_amount']
-		couriers.update(Delhivery=a)
-		couriers.update(Delhivery5KG='200 (upto 5 KG) after that 30 Rs./KG')
+		try:
+			response = requests.get('https://staging-express.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
+			response = response.json()
+			service=response['delivery_codes'][0]['postal_code']['cod']
+			headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
+			response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
+			response = response.json()
+			a=response[0]['total_amount']
+			couriers.update(DelhiverySF=a)
+			couriers.update(Delhivery5KG='200 (upto 5 KG) after that 30 Rs./KG')
+		except:
+			pass
+		if not couriers:
+			no_service=True
 
 
 
@@ -260,7 +265,23 @@ def CreateShipment(request,oid):
 		            if line == int(row[0]):
 		                couriers.update(FX_Air=(130*order.product.weight))
 		                couriers.update(FX_Road=(46*order.product.weight) if 46*order.product.weight >= 92 else 92)
-		couriers.update(Delhivery=100)
+		#Delhivery Courier
+		import requests
+		surface_token='***REMOVED***'
+		heavy_token='***REMOVED***'
+		try:
+			response = requests.get('https://staging-express.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
+			response = response.json()
+			service=response['delivery_codes'][0]['postal_code']['pre_paid']
+			headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
+			response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
+			response = response.json()
+			a=response[0]['total_amount']
+			couriers.update(DelhiverySF=a)
+			couriers.update(Delhivery5KG='200 (upto 5 KG) after that 30 Rs./KG')
+		except:
+			pass
+
 
 
 
@@ -273,6 +294,10 @@ def CreateShipment(request,oid):
 		data={}
 		data['couriers']=couriers
 		data['order']=order
+		try:
+			data['no_service']=no_service
+		except:
+			pass
 		return render(request,'main/CreateShipment.html',data)
 	
 def CreateShipmentFinal(request,oid,courier):
@@ -550,13 +575,22 @@ def CreateShipmentFinal(request,oid,courier):
 		"""
 		This is an example of how to dump a label to a local file.
 		"""
+		awb=str(shipment.response.CompletedShipmentDetail.CompletedPackageDetails[0].TrackingIds[0].TrackingNumber)
 		# This will be the file we write the label out to.
-		out_path = str(shipment.response.CompletedShipmentDetail.CompletedPackageDetails[0].TrackingIds[0].TrackingNumber)+'.pdf'
+		out_path = 'cdn/labels/' + awb + '.pdf'
 		print("Writing to file {}".format(out_path))
 		out_file = open(out_path, 'wb')
 		out_file.write(label_binary_data)
 		out_file.close()
-		return HttpResponse(label_binary_data, content_type='application/pdf')
+		# Creating Shipment Object now!
+
+		shipment = Shipment()
+		shipment.order = order
+		shipment.awb = awb
+		shipment.courier = courier
+		shipment.save()
+		# return HttpResponse(label_binary_data, content_type='application/pdf')
+		return redirect('/displayshipments/'+ str(shipment.id))
 
 
 
@@ -889,20 +923,14 @@ def CreateShipmentFinal(request,oid,courier):
 		# return HttpResponse('Shipment Created Succesfully! Tracking Number : ' + str(shipment.response.CompletedShipmentDetail.CompletedPackageDetails[0].TrackingIds[0].TrackingNumber))
 
 
-	elif courier =='Delhivery':
+	elif courier =='DelhiverySF':
 		import requests
 		surface_token='***REMOVED***'
 		heavy_token='***REMOVED***'
-		if(order.payment_mode=='cod'):
-			response = requests.get('https://staging-express.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
-			response = response.json()
-			service=response['delivery_codes'][0]['postal_code']['cod']
-			headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
-			response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
-			response = response.json()
-			a=response[0]['total_amount']
-
-			return HttpResponse("to be implemented")
+		if(order.payment_mode=='cod'):			
+			return HttpResponse("delhivery cod part")
+		else:
+			return HttpResponse("delhivery prepaid part")
 
 
 	elif courier == 'Delhivery5KG':
@@ -910,16 +938,18 @@ def CreateShipmentFinal(request,oid,courier):
 		surface_token='***REMOVED***'
 		heavy_token='***REMOVED***'
 		if(order.payment_mode=='cod'):
-			response = requests.get('https://staging-express.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
-			response = response.json()
-			service=response['delivery_codes'][0]['postal_code']['cod']
-			headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
-			response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
-			response = response.json()
-			a=response[0]['total_amount']
-			return HttpResponse('nothing.')
-
-
+			return HttpResponse('delhivery 5kg cod part')
+		else:
+			return HttpResponse("delhivery 5 kg prepaid part")
 
 def DisplayShipments(request):
-	return HttpResponse("Work in Progress :)")
+	shipments=Shipment.objects.all()
+	data = {}
+	data['shipments'] = shipments
+	return render(request,'main/DisplayShipments.html',data)
+
+def DisplayShipmentDetail(request,sid):
+	shipment=Shipment.objects.filter(id=sid).first()
+	data = {}
+	data['shipment'] = shipment
+	return render(request,'main/DisplayShipmentDetail.html',data)

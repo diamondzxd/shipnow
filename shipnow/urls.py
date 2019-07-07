@@ -45,11 +45,13 @@ urlpatterns = [
     path('addorder/',main.AddOrder),
     path('displayorder/',main.DisplayOrder),
     path('deleteorder/<id>',main.DeleteOrder),
+    path('fetchorders/',main.FetchOrder),
 
     #Shipments
     path('createshipment/<oid>',main.CreateShipment),
     path('createshipment/<oid>/<courier>',main.CreateShipmentFinal),
-    path('fetchorders/',main.FetchOrder),
+    path('displayshipments/',main.DisplayShipments),
+    path('displayshipments/<sid>',main.DisplayShipmentDetail),
     
 ]
 
