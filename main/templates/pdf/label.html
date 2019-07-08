@@ -1,18 +1,30 @@
-	<table border="1" cellpadding="5" cellspacing="0">
+	<table border="1" cellpadding="5" cellspacing="0" align="center">
 		<tr>
-			<td width="162" align="center"><img src="view/image/logo.png" height="30px"></td>
-			<td width="206" align="center"><img src="{{ manage_lb.delhivery_logo }}" height="30px"></td>
+			<td width="300" align="center"><img src="{{oldlappy_logo}}" width="400px"></td>
+			<td width="180" align="center"><img src="{{courier_logo}}" width="380px"></td>
 		</tr>
 		<tr>
-			<td><img src="{{ manage_lb.barcode }}" height="60px"/></td>
-			<td>Order#:&nbsp;{{ manage_lb.order_id }}</td>
+			<td><img src="{{ shipment_barcode }}" height="200px"/></td>
+			<td>Order#:&nbsp;{{ order.id }}<br>
+			{{order.datetime}}<br><br>
+			Routing Code : {{routing_code}}
+			</td>
 		</tr>
 		<tr>
-			<td><strong>Shipping Address :</strong><br>D-12/79, Sector-7, Rohini, New Delhi</td>
-			<td align="center"><strong>Pre-Paid</strong></td>
+			<td>
+				<strong>Shipping Address :</strong><br>
+				<strong>{{order.delivery.name}}</strong><br>
+				</div>
+				{{order.delivery.address}}, {{order.delivery.city}}<br>
+				{{destination_dc}}<br>
+				<strong>PIN : {{order.delivery.pincode}}</strong><br>
+				<strong>Contact : </strong>{{order.delivery.phone}}</td>
+			
+
+			<td align="center"><h1>{{payment_mode}}</h1><br><strong><br>Collect : </strong><img width="15px" src="{{rupees}}"> {{order.amount}}</td>
 		</tr>
 		<tr>
-			<td><strong>Seller:</strong>&nbsp; Honest Computers<br>D-12/79, Sector-7, Rohini, New Delhi</td>
+			<td><strong>Seller:</strong>&nbsp; Honest Computers<br><strong>Address : </strong>D-12/79, Sector-7, Rohini, New Delhi</td>
 			<td>GSTIN: 07AGQP1AZ100R
 			</td>
 		</tr>
@@ -26,21 +38,21 @@
 					<td><strong>Total</strong></td>
 				</tr>
 				<tr>
-					<td>Lenovo ThinkPad T430</td>
-					<td>Rs.15974</td>
+					<td>{{order.product.name}}</td>
+					<td><img width="10px" src="{{rupees}}"> {{order.amount}}</td>
 					<td>1</td>
-					<td>Rs.15974</td>
+					<td><img width="10px" src="{{rupees}}"> {{order.amount}}</td>
 				</tr>
 				<tr>
 					<td colspan="3" align="right"><strong>Total&nbsp;</strong></td>
-					<td>&nbsp;Rs.15974</td>
+					<td>&nbsp;<img width="10px" src="{{rupees}}"> {{order.amount}}</td>
 				</tr>
 			</table>
 			</td>
 		</tr>
 		<tr>
-			<td>Return Address:&nbsp;Honest Computers, D-12/79, Sector-7, Rohini, New Delhi 110085</td>
-			<td><img src="{{ manage_lb.barcode }}" height="60px"/></td>
+			<td><strong>Return Address: </strong>&nbsp;Honest Computers, D-12/79, Sector-7, Rohini, New Delhi 110085</td>
+			<td><img src="{{ order_barcode }}" height="60px"/></td>
 		</tr>
 	</table>
 
@@ -52,6 +64,7 @@ table {
   
 }
 table, th, td {
+	font-size: 5;
   border: 1px solid black;
 }
    <!--
