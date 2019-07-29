@@ -36,3 +36,4 @@ class Shipment(models.Model):
 	order=models.ForeignKey(Order,on_delete=models.PROTECT)
 	awb=models.CharField(max_length=30)
 	courier=models.CharField(max_length=40)
+	pdf = models.FileField(upload_to='labels/', null=True, blank=True)
