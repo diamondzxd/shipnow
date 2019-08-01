@@ -27,7 +27,7 @@ def AddAddress(request):
 		return redirect('/displayaddress/')
 
 def DisplayAddress(request):
-	addresses=Address.objects.all()
+	addresses=Address.objects.filter(is_saved = True)
 	return render(request,'main/DisplayAddress.html',{'addresses':addresses})
 
 def UpdateAddress(request,id):
@@ -48,11 +48,12 @@ def UpdateAddress(request,id):
 
 def DeleteAddress(request,id):
 	try:
-		a=Address.objects.filter(id=id)
-		a.delete()
+		a = Address.objects.get(id=id)
+		a.is_saved = False
+		a.save()
 		return redirect('/displayaddress')
-	except:
-		return HttpResponse("Address does not Exists!")
+	except Exception as e:
+		return HttpResponse(e)
 
 #For Ajax Requests, API Endpoint
 def FetchAddress(request):
@@ -74,7 +75,7 @@ def AddProduct(request):
 		return redirect('/displayproduct/')
 
 def DisplayProduct(request):
-	products=Product.objects.all()
+	products=Product.objects.filter(is_saved = True)
 	return render(request,'main/DisplayProduct.html',{'products':products})
 
 def UpdateProduct(request,id):
@@ -95,8 +96,9 @@ def UpdateProduct(request,id):
 
 def DeleteProduct(request,id):
 	try:
-		a=Product.objects.filter(id=id)
-		a.delete()
+		a = Product.objects.get(id=id)
+		a.is_saved = False
+		a.save()
 		return redirect('/displayproduct')
 	except:
 		return HttpResponse("Product does not Exists!")
@@ -202,16 +204,15 @@ def AddOrder(request):
 	return render(request,'main/AddOrder.html',data)
 
 def DisplayOrder(request):
-	orders=Order.objects.all()
+	orders=Order.objects.filter(is_pending = True)
 	return render(request,'main/DisplayOrder.html',{'orders':orders})
 
 def DeleteOrder(request,id):
-	try:
-		a=Order.objects.filter(id=id)
-		a.delete()
-		return redirect('/displayorder')
-	except:
-		return HttpResponse("Order does not Exists!")
+	a = Order.objects.get(id=id)
+	a.is_pending = False
+	a.save()
+	return redirect('/displayorder')
+	
 
 #For Ajax Requests, API Endpoint
 def FetchOrder(request):
@@ -351,6 +352,7 @@ def CreateShipmentFinal(request,oid,courier):
 		shipment.RequestedShipment.PackagingType = 'YOUR_PACKAGING'
 
 		# Shipper contact info.
+
 		shipment.RequestedShipment.Shipper.Contact.PersonName = order.pickup.name
 		shipment.RequestedShipment.Shipper.Contact.CompanyName = ''
 		shipment.RequestedShipment.Shipper.Contact.PhoneNumber = order.pickup.phone
@@ -375,7 +377,7 @@ def CreateShipmentFinal(request,oid,courier):
 		shipment.RequestedShipment.Recipient.Address.PostalCode = order.delivery.pincode
 		shipment.RequestedShipment.Recipient.Address.CountryCode = 'IN'
 		# This is needed to ensure an accurate rate quote with the response. Use AddressValidation to get ResidentialStatus
-		shipment.RequestedShipment.Recipient.Address.Residential = True
+		shipment.RequestedShipment.Recipient.Address.Residential = False
 		shipment.RequestedShipment.EdtRequestType = 'NONE'
 
 		# Create Weight, in pounds.
@@ -689,7 +691,7 @@ def CreateShipmentFinal(request,oid,courier):
 		shipment.RequestedShipment.Recipient.Address.PostalCode = order.delivery.pincode
 		shipment.RequestedShipment.Recipient.Address.CountryCode = 'IN'
 		# This is needed to ensure an accurate rate quote with the response. Use AddressValidation to get ResidentialStatus
-		shipment.RequestedShipment.Recipient.Address.Residential = True
+		shipment.RequestedShipment.Recipient.Address.Residential = False
 		shipment.RequestedShipment.EdtRequestType = 'NONE'
 
 		# Create Weight, in pounds.

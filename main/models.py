@@ -31,6 +31,7 @@ class Order(models.Model):
 	payment_mode=models.CharField(max_length=40)
 	amount=models.IntegerField()
 	datetime=models.DateTimeField()
+	is_pending = models.BooleanField(default = True)
 
 class Shipment(models.Model):
 	order=models.ForeignKey(Order,on_delete=models.PROTECT)
