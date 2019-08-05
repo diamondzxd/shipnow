@@ -204,7 +204,7 @@ def AddOrder(request):
 	return render(request,'main/AddOrder.html',data)
 
 def DisplayOrder(request):
-	orders=Order.objects.filter(is_pending = True)
+	orders=Order.objects.filter(is_pending = True).order_by('-id')
 	return render(request,'main/DisplayOrder.html',{'orders':orders})
 
 def DeleteOrder(request,id):
@@ -1047,7 +1047,7 @@ def CreateShipmentFinal(request,oid,courier):
 			return HttpResponse("delhivery 5 kg prepaid part")
 
 def DisplayShipments(request):
-	shipments=Shipment.objects.all()
+	shipments=Shipment.objects.all().order_by('-id')
 	data = {}
 	data['shipments'] = shipments
 	return render(request,'main/DisplayShipments.html',data)
