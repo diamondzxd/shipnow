@@ -12,7 +12,7 @@ import binascii
 import datetime
 import sys
 
-from example_config import CONFIG_OBJ
+from example_config_heavy import CONFIG_OBJ
 from fedex.services.ship_service import FedexProcessShipmentRequest
 
 # What kind of file do you want this example to generate?

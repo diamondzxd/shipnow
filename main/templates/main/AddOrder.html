@@ -171,7 +171,7 @@
 					    <label for="product_save">Save Product</label><br></div>
 					    <hr>
 					<div class="form-group">
-							<select name="payment_mode" class="form-control" id="payment_mode">
+							<select name="payment_mode" class="form-control" id="payment_mode" required>
 							<option value="0">Select Payment Method</option>
 							<option value="prepaid">Pre-Paid</option>
 							<option value="cod">Cash on Delivery</option>
@@ -179,7 +179,7 @@
 					</div>
 			
 					<div class="form-group">
-						<input type="number" name="order_amount" id="order_amount" placeholder="Enter Order Invoice Amount (₹)" class="form-control">
+						<input type="number" name="order_amount" id="order_amount" placeholder="Enter Order Invoice Amount (₹)" class="form-control" required>
 					</div>
 					<div>
 						<button type="submit" class="btn btn-primary">Select Courier</button>
