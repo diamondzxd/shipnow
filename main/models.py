@@ -9,7 +9,7 @@ class Address(models.Model):
 	state=models.CharField(max_length=30)
 	city=models.CharField(max_length=30)
 	pincode=models.IntegerField()
-	phone=models.IntegerField()
+	phone=models.CharField(max_length=10)
 	email=models.EmailField()
 	is_saved=models.BooleanField(default=False)
 

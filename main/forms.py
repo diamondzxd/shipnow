@@ -26,6 +26,7 @@ class AddressForm(forms.ModelForm):
 		('Haryana','Haryana'),
 		('Himachal Pradesh','Himachal Pradesh'),
 		('Jammu and Kashmir','Jammu and Kashmir'),
+		('Jharkhand','Jharkhand'),
 		('Karnataka','Karnataka'),
 		('Kerala','Kerala'),
 		('Lakshadweep', 'Lakshadweep'),
@@ -52,7 +53,7 @@ class AddressForm(forms.ModelForm):
 	country=forms.ChoiceField(choices=countryoptions,widget=forms.Select(attrs={'class': 'form-control','autocomplete':'off'}))
 	state=forms.ChoiceField(choices=stateoptions,widget=forms.Select(attrs={'class': 'form-control','autocomplete':'off'}))
 	city=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'City', 'class': 'form-control','autocomplete':'off'}))
-	pincode=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Pin Code', 'class': 'form-control','maxlength':'6','pattern':'\d{4}','autocomplete':'off'}))
+	pincode=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Pin Code', 'class': 'form-control','autocomplete':'off'}))
 	phone=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Phone Number', 'class': 'form-control','autocomplete':'off'}))
 	email=forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'E-mail ID', 'class': 'form-control','autocomplete':'off'}))
 	is_saved=forms.BooleanField()
