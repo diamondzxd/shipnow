@@ -5,7 +5,7 @@ This example shows how to track shipments.
 import logging
 import sys
 
-from example_config import CONFIG_OBJ
+from example_config_flat import CONFIG_OBJ
 from fedex.services.track_service import FedexTrackRequest
 
 # Un-comment to see the response from Fedex printed in stdout.
@@ -22,7 +22,7 @@ track = FedexTrackRequest(CONFIG_OBJ, customer_transaction_id=customer_transacti
 
 # Track by Tracking Number
 track.SelectionDetails.PackageIdentifier.Type = 'TRACKING_NUMBER_OR_DOORTAG'
-track.SelectionDetails.PackageIdentifier.Value = '797615467620'
+track.SelectionDetails.PackageIdentifier.Value = '775792396447'
 
 # FedEx operating company or delete
 del track.SelectionDetails.OperatingCompany

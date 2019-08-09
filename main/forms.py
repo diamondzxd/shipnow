@@ -47,14 +47,14 @@ class AddressForm(forms.ModelForm):
 		('West Bengal','West Bengal')
 		)
 
-	name=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Name', 'class': 'form-control'}))
-	address=forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Address', 'class': 'form-control', 'rows':3}))
-	country=forms.ChoiceField(choices=countryoptions,widget=forms.Select(attrs={'class': 'form-control'}))
-	state=forms.ChoiceField(choices=stateoptions,widget=forms.Select(attrs={'class': 'form-control'}))
-	city=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'City', 'class': 'form-control'}))
-	pincode=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Pin Code', 'class': 'form-control'}))
-	phone=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Phone Number', 'class': 'form-control'}))
-	email=forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'E-mail ID', 'class': 'form-control'}))
+	name=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Name', 'class': 'form-control','autocomplete':'off'}))
+	address=forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Address', 'class': 'form-control', 'rows':3,'autocomplete':'off'}))
+	country=forms.ChoiceField(choices=countryoptions,widget=forms.Select(attrs={'class': 'form-control','autocomplete':'off'}))
+	state=forms.ChoiceField(choices=stateoptions,widget=forms.Select(attrs={'class': 'form-control','autocomplete':'off'}))
+	city=forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'City', 'class': 'form-control','autocomplete':'off'}))
+	pincode=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Pin Code', 'class': 'form-control','maxlength':'6','pattern':'\d{4}','autocomplete':'off'}))
+	phone=forms.IntegerField(widget=forms.TextInput(attrs={'placeholder': 'Phone Number', 'class': 'form-control','autocomplete':'off'}))
+	email=forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'E-mail ID', 'class': 'form-control','autocomplete':'off'}))
 	is_saved=forms.BooleanField()
 
 
