@@ -245,13 +245,8 @@ def CreateShipment(request,oid):
 		try:
 			response = requests.get('https://track.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
 			response = response.json()
-			service=response['delivery_codes'][0]['postal_code']['cod']
-			headers={'authorization':'Token ***REMOVED***','accept':'application/json','Content-Type':'application/json'}
-			response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=COD',headers=headers)
-			response = response.json()
-			a=response[0]['total_amount']
-			couriers.update(DelhiverySF=a)
-			couriers.update(Delhivery5KG='₹20/KG in Delhi, ₹27 for within 400KM, ₹32-36 for Metro City, Rest of India ₹39-45/KG. (Minimum 5 KG) + 2% on Invoice amount for COD.')
+			couriers.update(DelhiverySF='40 per 500gm.')
+			couriers.update(Delhivery5KG='20/KG in Delhi, ₹27 for within 400KM, ₹32-36 for Metro City, Rest of India ₹39-45/KG. (Minimum 5 KG) + 2% on Invoice amount for COD.')
 		except:
 			pass
 		if not couriers:
@@ -277,12 +272,7 @@ def CreateShipment(request,oid):
 		try:
 			response = requests.get('https://track.delhivery.com/c/api/pin-codes/json/?token='+surface_token+'&filter_codes='+str(order.delivery.pincode))
 			response = response.json()
-			service=response['delivery_codes'][0]['postal_code']['pre_paid']
-			headers={'authorization':'Token '+surface_token,'accept':'application/json','Content-Type':'application/json'}
-			response = requests.get('https://track.delhivery.com/api/kinko/v1/invoice/charges/.json?ss=Delivered&md=S&zn=C2&pt=Pre-paid',headers=headers)
-			response = response.json()
-			a=response[0]['total_amount']
-			couriers.update(DelhiverySF=a)
+			couriers.update(DelhiverySF='40 per 500gm.')
 			couriers.update(Delhivery5KG='20/KG in Delhi, ₹27 for within 400KM, ₹32-36 for Metro City, Rest of India ₹39-45/KG. (Minimum 5 KG)')
 		except:
 			pass

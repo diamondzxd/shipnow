@@ -6,7 +6,7 @@ import datetime
 import sys
 import logging
 
-from example_config import CONFIG_OBJ
+from example_config_flat import CONFIG_OBJ
 from fedex.services.pickup_service import FedexCreatePickupRequest
 
 customer_transaction_id = "*** PickupService Request v11 using Python ***"  # Optional transaction_id
@@ -17,7 +17,7 @@ pickup_service.OriginDetail.PickupLocation.Contact.EMailAddress = 'admin@oldlapp
 pickup_service.OriginDetail.PickupLocation.Contact.CompanyName = 'Honest Computers'
 pickup_service.OriginDetail.PickupLocation.Contact.PhoneNumber = '9891413700'
 pickup_service.OriginDetail.PickupLocation.Address.StateOrProvinceCode = 'DL'
-pickup_service.OriginDetail.PickupLocation.Address.PostalCode = '560043'
+pickup_service.OriginDetail.PickupLocation.Address.PostalCode = '110085'
 pickup_service.OriginDetail.PickupLocation.Address.CountryCode = 'IN'
 pickup_service.OriginDetail.PickupLocation.Address.StreetLines = ['D-12/79, Sec-7, Rohini', 'Delhi']
 pickup_service.OriginDetail.PickupLocation.Address.City = 'New Delhi'
@@ -32,15 +32,16 @@ pickup_service.OriginDetail.BuildingPart = 'BUILDING'
 
 # Identifies the date and time the package will be ready for pickup by FedEx.
 pickup_service.OriginDetail.ReadyTimestamp = datetime.datetime.now().replace(microsecond=0).isoformat()
+#pickup_service.OriginDetail.ReadyTimestamp = '2019-08-10T12:00:00'
 
 # Identifies the latest time at which the driver can gain access to pick up the package(s)
-pickup_service.OriginDetail.CompanyCloseTime = '21:00:00'
+pickup_service.OriginDetail.CompanyCloseTime = '19:00:00'
 
 pickup_service.CarrierCode = 'FDXE'
 
 pickup_service.TotalWeight.Units = 'KG'
-pickup_service.TotalWeight.Value = '3'
-pickup_service.PackageCount = '1'
+pickup_service.TotalWeight.Value = '20'
+pickup_service.PackageCount = '3'
 # pickup_service.OversizePackageCount = '1'
 
 pickup_service.CommodityDescription = 'package'

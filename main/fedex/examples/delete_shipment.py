@@ -22,7 +22,7 @@ del_request = FedexDeleteShipmentRequest(CONFIG_OBJ)
 del_request.DeletionControlType = "DELETE_ALL_PACKAGES"
 
 # The tracking number of the shipment to delete.
-del_request.TrackingId.TrackingNumber = '788978151724'  # '111111111111' will also not delete
+del_request.TrackingId.TrackingNumber = '789020998385'  # '111111111111' will also not delete
 
 # What kind of shipment the tracking number used.
 # Docs say this isn't required, but the WSDL won't validate without it.
