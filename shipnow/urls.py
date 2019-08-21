@@ -52,6 +52,7 @@ urlpatterns = [
     path('createshipment/<oid>/<courier>',main.CreateShipmentFinal),
     path('displayshipments/',main.DisplayShipments),
     path('displayshipments/<sid>',main.DisplayShipmentDetail),
+    path('generateinvoice/<oid>',main.GenerateInvoice),
     path('labeltest/',main.LabelTesting),
     
 ]

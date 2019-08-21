@@ -1469,6 +1469,12 @@ def DisplayShipmentDetail(request,sid):
 	data['shipment'] = shipment
 	return render(request,'main/DisplayShipmentDetail.html',data)
 
+def GenerateInvoice(request,oid):
+	order = Order.objects.filter(id=oid).first()
+	data = {}
+	data['order'] = order
+	return render(request,'main/GenerateInvoice.html',data)
+
 def LabelTesting(request):
 	import requests
 	order = Order.objects.filter(id=2).first()
