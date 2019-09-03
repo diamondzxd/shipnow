@@ -42,6 +42,7 @@ class AddressForm(forms.ModelForm):
 		('Rajasthan','Rajasthan'),
 		('Sikkim','Sikkim'),
 		('Telangana','Telangana'),
+		('Tamil Nadu','Tamil Nadu'),
 		('Tripura','Tripura'),
 		('Uttar Pradesh','Uttar Pradesh'),
 		('Uttarakhand','Uttarakhand'),
