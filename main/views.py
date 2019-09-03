@@ -57,7 +57,7 @@ def DeleteAddress(request,id):
 
 #For Ajax Requests, API Endpoint
 def FetchAddress(request):
-	addresses = serializers.serialize("json", Address.objects.all())
+	addresses = serializers.serialize("json", Address.objects.filter(is_saved = True))
 	data = {"addresses": addresses}
 	return JsonResponse(data,safe=False)
 
@@ -104,7 +104,7 @@ def DeleteProduct(request,id):
 		return HttpResponse("Product does not Exists!")
 
 def FetchProduct(request):
-	products = serializers.serialize("json", Product.objects.all())
+	products = serializers.serialize("json", Product.objects.filter(is_saved = True))
 	data = {"products": products}
 	return JsonResponse(data,safe=False)
 
@@ -216,7 +216,7 @@ def DeleteOrder(request,id):
 
 #For Ajax Requests, API Endpoint
 def FetchOrder(request):
-	orders = serializers.serialize("python", Order.objects.all())
+	orders = serializers.serialize("python", Order.objects.filter(is_pending = True))
 	data = {"orders": orders}
 	return JsonResponse(data,safe=False)
 
