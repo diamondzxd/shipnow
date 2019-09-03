@@ -345,26 +345,26 @@ def CreateShipmentFinal(request,oid,courier):
 
 		# Shipper contact info.
 
-		shipment.RequestedShipment.Shipper.Contact.PersonName = order.pickup.name
+		shipment.RequestedShipment.Shipper.Contact.PersonName = order.pickup.name[:35]
 		shipment.RequestedShipment.Shipper.Contact.CompanyName = ''
 		shipment.RequestedShipment.Shipper.Contact.PhoneNumber = order.pickup.phone
 
 		# Shipper address.
-		shipment.RequestedShipment.Shipper.Address.StreetLines = wrap(order.pickup.address,35)
-		shipment.RequestedShipment.Shipper.Address.City = order.pickup.city
+		shipment.RequestedShipment.Shipper.Address.StreetLines = wrap(order.pickup.address[:70],35)
+		shipment.RequestedShipment.Shipper.Address.City = order.pickup.city[:35]
 		shipment.RequestedShipment.Shipper.Address.StateOrProvinceCode = 'DL'
 		shipment.RequestedShipment.Shipper.Address.PostalCode = order.pickup.pincode
 		shipment.RequestedShipment.Shipper.Address.CountryCode = 'IN'
 		shipment.RequestedShipment.Shipper.Address.Residential = False
 
 		# Recipient contact info.
-		shipment.RequestedShipment.Recipient.Contact.PersonName = order.delivery.name
+		shipment.RequestedShipment.Recipient.Contact.PersonName = order.delivery.name[:35]
 		shipment.RequestedShipment.Recipient.Contact.CompanyName = ''
 		shipment.RequestedShipment.Recipient.Contact.PhoneNumber = order.delivery.phone
 
 		# Recipient address
-		shipment.RequestedShipment.Recipient.Address.StreetLines = wrap(order.delivery.address,35)
-		shipment.RequestedShipment.Recipient.Address.City = order.delivery.city
+		shipment.RequestedShipment.Recipient.Address.StreetLines = wrap(order.delivery.address[:70],35)
+		shipment.RequestedShipment.Recipient.Address.City = order.delivery.city[:35]
 		shipment.RequestedShipment.Recipient.Address.StateOrProvinceCode = 'DL'
 		shipment.RequestedShipment.Recipient.Address.PostalCode = order.delivery.pincode
 		shipment.RequestedShipment.Recipient.Address.CountryCode = 'IN'
@@ -379,9 +379,9 @@ def CreateShipmentFinal(request,oid,courier):
 
 		quantity=1
 		commodity = shipment.create_wsdl_object_of_type('Commodity')
-		commodity.Name = order.product.name
+		commodity.Name = order.product.name[:35]
 		commodity.NumberOfPieces = quantity
-		commodity.Description = order.product.name
+		commodity.Description = order.product.name[:35]
 		commodity.CountryOfManufacture = "IN"
 		commodity.Weight = package1_weight
 		commodity.Quantity = quantity
@@ -459,7 +459,7 @@ def CreateShipmentFinal(request,oid,courier):
 		# Add customer reference
 		customer_reference = shipment.create_wsdl_object_of_type('CustomerReference')
 		customer_reference.CustomerReferenceType="CUSTOMER_REFERENCE"
-		customer_reference.Value = str(order.delivery.name+" "+order.delivery.city)
+		customer_reference.Value = str('OldLappy-SN-' + order.id)
 		package1.CustomerReferences.append(customer_reference)
 
 		# Add department number
@@ -469,10 +469,10 @@ def CreateShipmentFinal(request,oid,courier):
 		package1.CustomerReferences.append(department_number)
 
 		# Add invoice number
-		# invoice_number = shipment.create_wsdl_object_of_type('CustomerReference')
-		# invoice_number.CustomerReferenceType="INVOICE_NUMBER"
-		# invoice_number.Value = "your invoice number"
-		# package1.CustomerReferences.append(invoice_number)
+		invoice_number = shipment.create_wsdl_object_of_type('CustomerReference')
+		invoice_number.CustomerReferenceType="INVOICE_NUMBER"
+		invoice_number.Value = "B2C"
+		package1.CustomerReferences.append(invoice_number)
 
 		# Add a signature option for the package using SpecialServicesRequested or comment out.
 		# SpecialServiceTypes can be APPOINTMENT_DELIVERY, COD, DANGEROUS_GOODS, DRY_ICE, SIGNATURE_OPTION etc..
@@ -660,26 +660,26 @@ def CreateShipmentFinal(request,oid,courier):
 
 		# Shipper contact info.
 
-		shipment.RequestedShipment.Shipper.Contact.PersonName = order.pickup.name
+		shipment.RequestedShipment.Shipper.Contact.PersonName = order.pickup.name[:35]
 		shipment.RequestedShipment.Shipper.Contact.CompanyName = ''
 		shipment.RequestedShipment.Shipper.Contact.PhoneNumber = order.pickup.phone
 
 		# Shipper address.
-		shipment.RequestedShipment.Shipper.Address.StreetLines = wrap(order.pickup.address,35)
-		shipment.RequestedShipment.Shipper.Address.City = order.pickup.city
+		shipment.RequestedShipment.Shipper.Address.StreetLines = wrap(order.pickup.address[:70],35)
+		shipment.RequestedShipment.Shipper.Address.City = order.pickup.city[:35]
 		shipment.RequestedShipment.Shipper.Address.StateOrProvinceCode = 'DL'
 		shipment.RequestedShipment.Shipper.Address.PostalCode = order.pickup.pincode
 		shipment.RequestedShipment.Shipper.Address.CountryCode = 'IN'
 		shipment.RequestedShipment.Shipper.Address.Residential = False
 
 		# Recipient contact info.
-		shipment.RequestedShipment.Recipient.Contact.PersonName = order.delivery.name
+		shipment.RequestedShipment.Recipient.Contact.PersonName = order.delivery.name[:35]
 		shipment.RequestedShipment.Recipient.Contact.CompanyName = ''
 		shipment.RequestedShipment.Recipient.Contact.PhoneNumber = order.delivery.phone
 
 		# Recipient address
-		shipment.RequestedShipment.Recipient.Address.StreetLines = wrap(order.delivery.address,35)
-		shipment.RequestedShipment.Recipient.Address.City = order.delivery.city
+		shipment.RequestedShipment.Recipient.Address.StreetLines = wrap(order.delivery.address[:70],35)
+		shipment.RequestedShipment.Recipient.Address.City = order.delivery.city[:35]
 		shipment.RequestedShipment.Recipient.Address.StateOrProvinceCode = 'DL'
 		shipment.RequestedShipment.Recipient.Address.PostalCode = order.delivery.pincode
 		shipment.RequestedShipment.Recipient.Address.CountryCode = 'IN'
@@ -694,9 +694,9 @@ def CreateShipmentFinal(request,oid,courier):
 
 		quantity=1
 		commodity = shipment.create_wsdl_object_of_type('Commodity')
-		commodity.Name = order.product.name
+		commodity.Name = order.product.name[:35]
 		commodity.NumberOfPieces = quantity
-		commodity.Description = order.product.name
+		commodity.Description = order.product.name[:35]
 		commodity.CountryOfManufacture = "IN"
 		commodity.Weight = package1_weight
 		commodity.Quantity = quantity
@@ -774,7 +774,7 @@ def CreateShipmentFinal(request,oid,courier):
 		# Add customer reference
 		customer_reference = shipment.create_wsdl_object_of_type('CustomerReference')
 		customer_reference.CustomerReferenceType="CUSTOMER_REFERENCE"
-		customer_reference.Value = str(order.delivery.name+" "+order.delivery.city)
+		customer_reference.Value = str('OldLappy-SN-' + order.id)
 		package1.CustomerReferences.append(customer_reference)
 
 		# Add department number
@@ -784,10 +784,10 @@ def CreateShipmentFinal(request,oid,courier):
 		package1.CustomerReferences.append(department_number)
 
 		# Add invoice number
-		# invoice_number = shipment.create_wsdl_object_of_type('CustomerReference')
-		# invoice_number.CustomerReferenceType="INVOICE_NUMBER"
-		# invoice_number.Value = "your invoice number"
-		# package1.CustomerReferences.append(invoice_number)
+		invoice_number = shipment.create_wsdl_object_of_type('CustomerReference')
+		invoice_number.CustomerReferenceType="INVOICE_NUMBER"
+		invoice_number.Value = "B2C"
+		package1.CustomerReferences.append(invoice_number)
 
 		# Add a signature option for the package using SpecialServicesRequested or comment out.
 		# SpecialServiceTypes can be APPOINTMENT_DELIVERY, COD, DANGEROUS_GOODS, DRY_ICE, SIGNATURE_OPTION etc..
@@ -975,26 +975,26 @@ def CreateShipmentFinal(request,oid,courier):
 
 		# Shipper contact info.
 
-		shipment.RequestedShipment.Shipper.Contact.PersonName = order.pickup.name
+		shipment.RequestedShipment.Shipper.Contact.PersonName = order.pickup.name[:35]
 		shipment.RequestedShipment.Shipper.Contact.CompanyName = ''
 		shipment.RequestedShipment.Shipper.Contact.PhoneNumber = order.pickup.phone
 
 		# Shipper address.
-		shipment.RequestedShipment.Shipper.Address.StreetLines = wrap(order.pickup.address,35)
-		shipment.RequestedShipment.Shipper.Address.City = order.pickup.city
+		shipment.RequestedShipment.Shipper.Address.StreetLines = wrap(order.pickup.address[:70],35)
+		shipment.RequestedShipment.Shipper.Address.City = order.pickup.city[:35]
 		shipment.RequestedShipment.Shipper.Address.StateOrProvinceCode = 'DL'
 		shipment.RequestedShipment.Shipper.Address.PostalCode = order.pickup.pincode
 		shipment.RequestedShipment.Shipper.Address.CountryCode = 'IN'
 		shipment.RequestedShipment.Shipper.Address.Residential = False
 
 		# Recipient contact info.
-		shipment.RequestedShipment.Recipient.Contact.PersonName = order.delivery.name
+		shipment.RequestedShipment.Recipient.Contact.PersonName = order.delivery.name[:35]
 		shipment.RequestedShipment.Recipient.Contact.CompanyName = ''
 		shipment.RequestedShipment.Recipient.Contact.PhoneNumber = order.delivery.phone
 
 		# Recipient address
-		shipment.RequestedShipment.Recipient.Address.StreetLines = wrap(order.delivery.address,35)
-		shipment.RequestedShipment.Recipient.Address.City = order.delivery.city
+		shipment.RequestedShipment.Recipient.Address.StreetLines = wrap(order.delivery.address[:70],35)
+		shipment.RequestedShipment.Recipient.Address.City = order.delivery.city[:35]
 		shipment.RequestedShipment.Recipient.Address.StateOrProvinceCode = 'DL'
 		shipment.RequestedShipment.Recipient.Address.PostalCode = order.delivery.pincode
 		shipment.RequestedShipment.Recipient.Address.CountryCode = 'IN'
@@ -1009,9 +1009,9 @@ def CreateShipmentFinal(request,oid,courier):
 
 		quantity=1
 		commodity = shipment.create_wsdl_object_of_type('Commodity')
-		commodity.Name = order.product.name
+		commodity.Name = order.product.name[:35]
 		commodity.NumberOfPieces = quantity
-		commodity.Description = order.product.name
+		commodity.Description = order.product.name[:35]
 		commodity.CountryOfManufacture = "IN"
 		commodity.Weight = package1_weight
 		commodity.Quantity = quantity
@@ -1089,7 +1089,7 @@ def CreateShipmentFinal(request,oid,courier):
 		# Add customer reference
 		customer_reference = shipment.create_wsdl_object_of_type('CustomerReference')
 		customer_reference.CustomerReferenceType="CUSTOMER_REFERENCE"
-		customer_reference.Value = str(order.delivery.name+" "+order.delivery.city)
+		customer_reference.Value = str('OldLappy-SN' + order.id)
 		package1.CustomerReferences.append(customer_reference)
 
 		# Add department number
@@ -1099,10 +1099,10 @@ def CreateShipmentFinal(request,oid,courier):
 		package1.CustomerReferences.append(department_number)
 
 		# Add invoice number
-		# invoice_number = shipment.create_wsdl_object_of_type('CustomerReference')
-		# invoice_number.CustomerReferenceType="INVOICE_NUMBER"
-		# invoice_number.Value = "your invoice number"
-		# package1.CustomerReferences.append(invoice_number)
+		invoice_number = shipment.create_wsdl_object_of_type('CustomerReference')
+		invoice_number.CustomerReferenceType="INVOICE_NUMBER"
+		invoice_number.Value = "B2C"
+		package1.CustomerReferences.append(invoice_number)
 
 		# Add a signature option for the package using SpecialServicesRequested or comment out.
 		# SpecialServiceTypes can be APPOINTMENT_DELIVERY, COD, DANGEROUS_GOODS, DRY_ICE, SIGNATURE_OPTION etc..
