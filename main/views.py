@@ -459,7 +459,7 @@ def CreateShipmentFinal(request,oid,courier):
 		# Add customer reference
 		customer_reference = shipment.create_wsdl_object_of_type('CustomerReference')
 		customer_reference.CustomerReferenceType="CUSTOMER_REFERENCE"
-		customer_reference.Value = str('OldLappy-SN-' + order.id)
+		customer_reference.Value = str('OldLappy-SN-' + str(order.id))
 		package1.CustomerReferences.append(customer_reference)
 
 		# Add department number
@@ -774,7 +774,7 @@ def CreateShipmentFinal(request,oid,courier):
 		# Add customer reference
 		customer_reference = shipment.create_wsdl_object_of_type('CustomerReference')
 		customer_reference.CustomerReferenceType="CUSTOMER_REFERENCE"
-		customer_reference.Value = str('OldLappy-SN-' + order.id)
+		customer_reference.Value = str('OldLappy-SN-' + str(order.id))
 		package1.CustomerReferences.append(customer_reference)
 
 		# Add department number
@@ -1089,7 +1089,7 @@ def CreateShipmentFinal(request,oid,courier):
 		# Add customer reference
 		customer_reference = shipment.create_wsdl_object_of_type('CustomerReference')
 		customer_reference.CustomerReferenceType="CUSTOMER_REFERENCE"
-		customer_reference.Value = str('OldLappy-SN' + order.id)
+		customer_reference.Value = str('OldLappy-SN' + str(order.id))
 		package1.CustomerReferences.append(customer_reference)
 
 		# Add department number
