@@ -5,7 +5,7 @@ This example shows how to delete existing shipments.
 import logging
 import sys
 
-from example_config_flat import CONFIG_OBJ
+from example_config_heavy import CONFIG_OBJ
 from fedex.services.ship_service import FedexDeleteShipmentRequest
 from fedex.base_service import FedexError
 
@@ -22,7 +22,9 @@ del_request = FedexDeleteShipmentRequest(CONFIG_OBJ)
 del_request.DeletionControlType = "DELETE_ALL_PACKAGES"
 
 # The tracking number of the shipment to delete.
-del_request.TrackingId.TrackingNumber = '789541521293'  # '111111111111' will also not delete
+trk = input('Enter the tracking number you want to delete.')
+
+del_request.TrackingId.TrackingNumber = str(trk)  # '111111111111' will also not delete
 
 # What kind of shipment the tracking number used.
 # Docs say this isn't required, but the WSDL won't validate without it.

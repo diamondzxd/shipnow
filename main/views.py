@@ -350,21 +350,21 @@ def CreateShipmentFinal(request,oid,courier):
 		shipment.RequestedShipment.Shipper.Contact.PhoneNumber = order.pickup.phone
 
 		# Shipper address.
-		shipment.RequestedShipment.Shipper.Address.StreetLines = wrap(order.pickup.address[:70],35)
-		shipment.RequestedShipment.Shipper.Address.City = order.pickup.city[:35]
+		shipment.RequestedShipment.Shipper.Address.StreetLines = wrap(str(order.pickup.address[:70]),35)
+		shipment.RequestedShipment.Shipper.Address.City = str(order.pickup.city[:35])
 		shipment.RequestedShipment.Shipper.Address.StateOrProvinceCode = 'DL'
 		shipment.RequestedShipment.Shipper.Address.PostalCode = order.pickup.pincode
 		shipment.RequestedShipment.Shipper.Address.CountryCode = 'IN'
 		shipment.RequestedShipment.Shipper.Address.Residential = False
 
 		# Recipient contact info.
-		shipment.RequestedShipment.Recipient.Contact.PersonName = order.delivery.name[:35]
+		shipment.RequestedShipment.Recipient.Contact.PersonName = str(order.delivery.name[:35])
 		shipment.RequestedShipment.Recipient.Contact.CompanyName = ''
 		shipment.RequestedShipment.Recipient.Contact.PhoneNumber = order.delivery.phone
 
 		# Recipient address
-		shipment.RequestedShipment.Recipient.Address.StreetLines = wrap(order.delivery.address[:70],35)
-		shipment.RequestedShipment.Recipient.Address.City = order.delivery.city[:35]
+		shipment.RequestedShipment.Recipient.Address.StreetLines = wrap(str(order.delivery.address[:70]),35)
+		shipment.RequestedShipment.Recipient.Address.City = str(order.delivery.city[:35])
 		shipment.RequestedShipment.Recipient.Address.StateOrProvinceCode = 'DL'
 		shipment.RequestedShipment.Recipient.Address.PostalCode = order.delivery.pincode
 		shipment.RequestedShipment.Recipient.Address.CountryCode = 'IN'
@@ -379,9 +379,9 @@ def CreateShipmentFinal(request,oid,courier):
 
 		quantity=1
 		commodity = shipment.create_wsdl_object_of_type('Commodity')
-		commodity.Name = order.product.name[:35]
+		commodity.Name = str(order.product.name[:35])
 		commodity.NumberOfPieces = quantity
-		commodity.Description = order.product.name[:35]
+		commodity.Description = str(order.product.name[:35])
 		commodity.CountryOfManufacture = "IN"
 		commodity.Weight = package1_weight
 		commodity.Quantity = quantity
