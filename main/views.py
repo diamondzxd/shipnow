@@ -192,8 +192,8 @@ def AddOrder(request):
 	addressform1=AddressForm(auto_id="pickup_%s")
 	addressform2=AddressForm(auto_id="delivery_%s")
 	productform=ProductForm(auto_id="product_%s")
-	addresses=Address.objects.filter(is_saved=True)
-	products=Product.objects.filter(is_saved=True)
+	addresses=Address.objects.filter(is_saved=True).order_by('name')
+	products=Product.objects.filter(is_saved=True).order_by('name')
 	data={
 	'addressform1':addressform1,
 	'addressform2':addressform2,
