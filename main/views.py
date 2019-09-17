@@ -23,6 +23,7 @@ def AddAddress(request):
 		return render(request,'main/AddAddress.html',data)
 	else:
 		address=AddressForm(request.POST)
+		address.is_saved = True
 		address.save()
 		return redirect('/displayaddress/')
 
@@ -70,8 +71,9 @@ def AddProduct(request):
 		data['form']=form
 		return render(request,'main/AddProduct.html',data)
 	else:
-		address=ProductForm(request.POST)
-		address.save()
+		product = ProductForm(request.POST)
+		product.is_saved = True
+		product.save()
 		return redirect('/displayproduct/')
 
 def DisplayProduct(request):
