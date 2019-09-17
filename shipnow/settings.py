@@ -77,12 +77,14 @@ WSGI_APPLICATION = 'shipnow.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite',
         'NAME': 'diam_shipnow',
         'USER': 'diam_shipnow',
         'PASSWORD': '6CLrOsaBk89u',
         'HOST': 'localhost',
         'PORT': '',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 

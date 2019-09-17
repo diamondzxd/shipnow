@@ -121,8 +121,11 @@ def AddOrder(request):
 			pickup_address=Address.objects.get(id=pickup_address_selector)
 
 		except:
-			is_saved= request.POST.get('pickup_save')
-			is_saved = 1 if 'True' else 0
+			is_saved = request.POST.get('pickup_save')
+			if(is_saved == 'True'):
+				is_saved = True
+			else:
+				is_saved = False
 			pickup_address=Address()
 			pickup_address.name=request.POST.get('pickup_name')
 			pickup_address.address=request.POST.get('pickup_address')
@@ -141,8 +144,11 @@ def AddOrder(request):
 			delivery_address=Address.objects.get(id=delivery_address_selector)
 
 		except:
-			is_saved=request.POST.get('delivery_save')
-			is_saved = 1 if 'True' else 0
+			is_saved = request.POST.get('delivery_save')
+			if(is_saved == 'True'):
+				is_saved = True
+			else:
+				is_saved = False
 			delivery_address=Address()
 			delivery_address.name=request.POST.get('delivery_name')
 			delivery_address.address=request.POST.get('delivery_address')
@@ -159,8 +165,11 @@ def AddOrder(request):
 			product=Product.objects.get(id=product_selector)
 
 		except:
-			is_saved=request.POST.get('product_save')
-			is_saved = 1 if 'True' else 0
+			is_saved = request.POST.get('product_save')
+			if(is_saved == 'True'):
+				is_saved = True
+			else:
+				is_saved = False
 			product=Product()
 			product.name=request.POST.get('product_name')
 			product.price=request.POST.get('product_price')
