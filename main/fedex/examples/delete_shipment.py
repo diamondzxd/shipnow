@@ -5,7 +5,7 @@ This example shows how to delete existing shipments.
 import logging
 import sys
 
-from example_config_heavy import CONFIG_OBJ
+from example_config_flat import CONFIG_OBJ
 from fedex.services.ship_service import FedexDeleteShipmentRequest
 from fedex.base_service import FedexError
 

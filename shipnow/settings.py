@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'shipnow.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'oldl_shipnow',
-        'USER': 'oldl_shipnow',
-        'PASSWORD': 'CqrowykIeeGp',
+        'NAME': 'diam_shipnow',
+        'USER': 'diam_shipnow',
+        'PASSWORD': '6CLrOsaBk89u',
         'HOST': 'localhost',
         'PORT': '',
     }
