@@ -25,7 +25,7 @@ SECRET_KEY = 'egpmw$(qr0z%*_0z^_0#q035m2-sufe#4@#vg=hfvg)hmxtj$#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['node1.diamondzxd.com','127.0.0.1']
+ALLOWED_HOSTS = ['beta.shipnow.com','127.0.0.1']
 
 
 # Application definition
@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'shipnow.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'diam_shipnow',
-        'USER': 'diam_shipnow',
-        'PASSWORD': '6CLrOsaBk89u',
+        'NAME': 'beta_shipnow',
+        'USER': 'beta_shipnow',
+        'PASSWORD': '5pgDaFv2OpnD',
         'HOST': 'localhost',
         'PORT': '',
         # 'ENGINE': 'django.db.backends.sqlite3',
