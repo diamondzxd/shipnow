@@ -241,7 +241,7 @@ def CreateShipment(request,oid):
 		if(order.amount<=20000):
 			import csv
 			line=order.delivery.pincode
-			with open('/home/beta.shipnow.co.in/public_html/shipnow/fedex_cod.csv', 'r') as fp:
+			with open('fedex_cod.csv', 'r') as fp:
 			    csvreader = csv.reader(fp)
 			    for row in csvreader:
 			            if line == int(row[0]):
@@ -269,7 +269,7 @@ def CreateShipment(request,oid):
 	if(order.payment_mode=='prepaid'):
 		import csv
 		line=order.delivery.pincode
-		with open('/home/beta.shipnow.co.in/public_html/shipnow/fedex_prepaid.csv', 'r') as fp:
+		with open('fedex_prepaid.csv', 'r') as fp:
 		    csvreader = csv.reader(fp)
 		    for row in csvreader:
 		            if line == int(row[0]):
@@ -549,28 +549,26 @@ def CreateShipmentFinal(request,oid,courier):
 		from fedex.tools.conversion import basic_sobject_to_dict
 		response_dict = basic_sobject_to_dict(shipment.response)
 		response_dict['CompletedShipmentDetail']['CompletedPackageDetails'][0]['Label']['Parts'][0]['Image'] = ''
-		# print(response_dict)  # Image is empty string for display purposes.
+		print(response_dict)  # Image is empty string for display purposes.
 
 		# This will dump the response data dict to json.
 		# from fedex.tools.conversion import sobject_to_json
 		# print(sobject_to_json(shipment.response))
 
 		# Here is the overall end result of the query.
-		# print("HighestSeverity: {}".format(shipment.response.HighestSeverity))
+		print("HighestSeverity: {}".format(shipment.response.HighestSeverity))
 
 		# Getting the tracking number from the new shipment.
-		# print("Tracking #: {}"
+		print("Tracking #: {}"
 		      "".format(shipment.response.CompletedShipmentDetail.CompletedPackageDetails[0].TrackingIds[0].TrackingNumber))
 
 		# Net shipping costs. Only show if available. Sometimes sandbox will not include this in the response.
 		CompletedPackageDetails = shipment.response.CompletedShipmentDetail.CompletedPackageDetails[0]
 		if hasattr(CompletedPackageDetails, 'PackageRating'):
-			pass
-		    # print("Net Shipping Cost (US$): {}"
-		          # "".format(CompletedPackageDetails.PackageRating.PackageRateDetails[0].NetCharge.Amount))
+		    print("Net Shipping Cost (US$): {}"
+		          "".format(CompletedPackageDetails.PackageRating.PackageRateDetails[0].NetCharge.Amount))
 		else:
-			pass
-		    # print('WARNING: Unable to get shipping rate.')
+		    print('WARNING: Unable to get shipping rate.')
 
 		# Get the label image in ASCII format from the reply. Note the list indices
 		# we're using. You'll need to adjust or iterate through these if your shipment
@@ -587,7 +585,7 @@ def CreateShipmentFinal(request,oid,courier):
 		awb=str(shipment.response.CompletedShipmentDetail.CompletedPackageDetails[0].TrackingIds[0].TrackingNumber)
 		# This will be the file we write the label out to.
 		out_path = 'cdn/labels/' + awb + '.pdf'
-		# print("Writing to file {}".format(out_path))
+		print("Writing to file {}".format(out_path))
 		out_file = open(out_path, 'wb')
 		out_file.write(label_binary_data)
 		out_file.close()

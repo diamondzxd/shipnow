@@ -25,7 +25,7 @@ SECRET_KEY = 'egpmw$(qr0z%*_0z^_0#q035m2-sufe#4@#vg=hfvg)hmxtj$#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['beta.shipnow.co.in', 'cdn.diamondzxd.com']
+ALLOWED_HOSTS = ['beta.shipnow.com']
 
 
 # Application definition
