@@ -12,6 +12,7 @@ from io import BytesIO
 
 #Index Page
 def Index(request):
+	print("Hello")
 	return render(request,'main/shipnow-index.html',None)
 
 # Addresses
