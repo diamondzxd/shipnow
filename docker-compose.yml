@@ -1,0 +1,26 @@
+version: '3.3'
+
+services:
+  web:
+    build: ./shipnow
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./shipnow/:/usr/src/shipnow/
+    ports:
+      - 8000:8000
+    env_file:
+      - ./.env.dev
+
+    image: diamondzxd/shipnow
+
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=hello_django
+      - POSTGRES_PASSWORD=hello_django
+      - POSTGRES_DB=hello_django_dev
+
+volumes:
+  postgres_data:
