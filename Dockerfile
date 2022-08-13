@@ -2,7 +2,7 @@
 FROM python:3.7-alpine
 
 # set work directory
-WORKDIR /usr/src/shipnow
+WORKDIR /app
 
 # set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -21,7 +21,7 @@ RUN apk add build-base jpeg-dev zlib-dev
 # install dependencies
 RUN pip install --upgrade pip
 RUN pip install 'setuptools==58.0.0'
-COPY ./requirements.txt .
+COPY ./app/requirements.txt .
 RUN pip install -r requirements.txt
 
 # copy project
