@@ -29,4 +29,4 @@ The app will start on https://127.0.0.1:8000 :)
 
 # Live Link
 
-http://test.shipnow.co.in
+http://test.shipnow.co.in:8000
