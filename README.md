@@ -2,6 +2,10 @@
  
 ## Shipnow Logistics Aggregator Platform
 
+![shipnow index](https://i.imgur.com/BvmUE8C.png)
+
+<hr>
+
 ### This is a logistics aggregator platform.
 
 It takes input from the user through the Add Order form.  
@@ -12,7 +16,7 @@ After getting a shipping request, the application sends the Order data to the co
   
 It also allows to Generate the Invoice corresponding to that Order.
 
-# How do I self host this myself?
+## How do I self host this myself?
 
 This project can be easily built and ran as a container.
 
@@ -27,6 +31,15 @@ docker compose up
 
 The app will start on https://127.0.0.1:8000 :)
 
-# Live Link
+## Live Link
 
 http://test.shipnow.co.in:8000
+
+<hr>
+
+## Some more screenshots
+
+![shipnow add order](https://i.imgur.com/RzFJsA1.png)
+![shipnow display shipments](https://i.imgur.com/msAsSe3.png)
+![shipment detail](https://i.imgur.com/4bgnxb3.png)
+![delhivery label](https://i.imgur.com/diAtz7p.png)
