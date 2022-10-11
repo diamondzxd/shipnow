@@ -4,17 +4,17 @@
       <ns1:CreatePickupRequest>
          <ns1:WebAuthenticationDetail>
             <ns1:ParentCredential>
-               <ns1:Key>***REMOVED***</ns1:Key>
-               <ns1:Password>***REMOVED***</ns1:Password>
+               <ns1:Key>1ajuBMmfTMDScpkn</ns1:Key>
+               <ns1:Password>5Et2XSyqE9oPz9J4IVdUIY6RO</ns1:Password>
             </ns1:ParentCredential>
             <ns1:UserCredential>
-               <ns1:Key>***REMOVED***</ns1:Key>
-               <ns1:Password>***REMOVED***</ns1:Password>
+               <ns1:Key>1ajuBMmfTMDScpkn</ns1:Key>
+               <ns1:Password>5Et2XSyqE9oPz9J4IVdUIY6RO</ns1:Password>
             </ns1:UserCredential>
          </ns1:WebAuthenticationDetail>
          <ns1:ClientDetail>
-            <ns1:AccountNumber>***REMOVED***</ns1:AccountNumber>
-            <ns1:MeterNumber>***REMOVED***</ns1:MeterNumber>
+            <ns1:AccountNumber>510087780</ns1:AccountNumber>
+            <ns1:MeterNumber>119087977</ns1:MeterNumber>
          </ns1:ClientDetail>
          <ns1:Version>
             <ns1:ServiceId>disp</ns1:ServiceId>
