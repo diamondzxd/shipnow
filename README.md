@@ -16,6 +16,15 @@ After getting a shipping request, the application sends the Order data to the co
   
 It also allows to Generate the Invoice corresponding to that Order.
 
+[![Live Project](https://img.shields.io/badge/Live%20Project-blue?style=for-the-badge&logo=Google%20Chrome&logoColor=white)](http://test.shipnow.co.in:8000)
+
+## Tech Stack 
+
+[![Python](https://img.shields.io/badge/python-3-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)&nbsp;
+[![Django](https://img.shields.io/badge/django-2-blue?style=for-the-badge&logo=django&logoColor=white)](https://www.djangoproject.com/)&nbsp;
+[![BootStrap](https://img.shields.io/badge/Bootstrap-3-blue?style=for-the-badge&logo=bootstrap&logoColor=white)](https://getbootstrap.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-release-orange?style=for-the-badge&logo=javascript&logoColor=orange)](https://www.javascript.com/)
+
 ## How do I self host this myself?
 
 This project can be easily built and ran as a container.
@@ -35,6 +44,17 @@ The app will start on https://127.0.0.1:8000 :)
 
 http://test.shipnow.co.in:8000
 
+## Branches
+
+The repository has the following permanent branches:
+
+ * **master** This contains the code which has been released.
+
+ * **dev** This contains the latest code. All the contributing PRs must be sent to this branch. When we want to release the next version of the project, this branch is merged into the `master` branch.
+
+## Contributing
+Please read our [Contributing guidelines](https://github.com/diamondzxd/convertffs/blob/main/CONTRIBUTING.md)
+
 <hr>
 
 ## Some more screenshots
@@ -43,3 +63,4 @@ http://test.shipnow.co.in:8000
 ![shipnow display shipments](https://i.imgur.com/msAsSe3.png)
 ![shipment detail](https://i.imgur.com/4bgnxb3.png)
 ![delhivery label](https://i.imgur.com/diAtz7p.png)
+
