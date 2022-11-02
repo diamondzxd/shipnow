@@ -20,19 +20,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY", default="test1234")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.environ.get("DEBUG", default=0))
+DEBUG = int(os.environ.get("DEBUG", default=0)) | 1
 
-ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+ALLOWED_HOSTS = os.environ.get(
+    "DJANGO_ALLOWED_HOSTS", default="127.0.0.1").split(" ")
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'main',
-    'widget_tweaks',#installed via Pip
+    'widget_tweaks',  # installed via Pip
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -86,20 +87,6 @@ DATABASES = {
     }
 }
 
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'beta_shipnow',
-        'USER': 'beta_shipnow',
-        'PASSWORD': '5pgDaFv2OpnD',
-        'HOST': 'localhost',
-        'PORT': '',
-        # 'ENGINE': 'django.db.backends.sqlite3',
-        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}'''
-
-
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -138,4 +125,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 MEDIA_URL = '/cdn/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'cdn')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'cdn')
