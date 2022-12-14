@@ -3,7 +3,7 @@ from .forms import AddressForm,ProductForm
 from .models import Address,Product,Order,Shipment
 from django.http import HttpResponse,JsonResponse
 from django.core import serializers
-import json
+from django.contrib.auth.decorators import login_required
 import datetime
 from textwrap import wrap
 from main.utils import render_to_pdf
@@ -16,6 +16,7 @@ def Index(request):
 	return render(request,'main/shipnow-index.html',None)
 
 # Addresses
+@login_required
 def AddAddress(request):
 	if(request.method=='GET'):
 		form=AddressForm()
@@ -28,10 +29,12 @@ def AddAddress(request):
 		address.save()
 		return redirect('/displayaddress/')
 
+@login_required
 def DisplayAddress(request):
 	addresses=Address.objects.filter(is_saved = True)
 	return render(request,'main/DisplayAddress.html',{'addresses':addresses})
 
+@login_required
 def UpdateAddress(request,id):
 	method=request.method
 	if(method=='GET'):
@@ -48,6 +51,7 @@ def UpdateAddress(request,id):
 		except:
 			return HttpResponse('No Record Found for the Specified Query')
 
+@login_required
 def DeleteAddress(request,id):
 	try:
 		a = Address.objects.get(id=id)
@@ -58,6 +62,7 @@ def DeleteAddress(request,id):
 		return HttpResponse(e)
 
 #For Ajax Requests, API Endpoint
+@login_required
 def FetchAddress(request):
 	addresses = serializers.serialize("json", Address.objects.filter(is_saved = True))
 	data = {"addresses": addresses}
@@ -65,6 +70,7 @@ def FetchAddress(request):
 
 # Products
 
+@login_required
 def AddProduct(request):
 	if(request.method=='GET'):
 		form=ProductForm()
@@ -77,10 +83,12 @@ def AddProduct(request):
 		product.save()
 		return redirect('/displayproduct/')
 
+@login_required
 def DisplayProduct(request):
 	products=Product.objects.filter(is_saved = True)
 	return render(request,'main/DisplayProduct.html',{'products':products})
 
+@login_required
 def UpdateProduct(request,id):
 	method=request.method
 	if(method=='GET'):
@@ -97,6 +105,7 @@ def UpdateProduct(request,id):
 		except:
 			return HttpResponse('No Record Found for the Specified Query')
 
+@login_required
 def DeleteProduct(request,id):
 	try:
 		a = Product.objects.get(id=id)
@@ -106,6 +115,7 @@ def DeleteProduct(request,id):
 	except:
 		return HttpResponse("Product does not Exists!")
 
+@login_required
 def FetchProduct(request):
 	products = serializers.serialize("json", Product.objects.filter(is_saved = True))
 	data = {"products": products}
@@ -113,6 +123,7 @@ def FetchProduct(request):
 
 # Orders
 
+@login_required
 def AddOrder(request):
 
 	if(request.method=='POST'):
@@ -215,10 +226,12 @@ def AddOrder(request):
 	}
 	return render(request,'main/AddOrder.html',data)
 
+@login_required
 def DisplayOrder(request):
 	orders=Order.objects.filter(is_pending = True).order_by('-id')
 	return render(request,'main/DisplayOrder.html',{'orders':orders})
 
+@login_required
 def DeleteOrder(request,id):
 	a = Order.objects.get(id=id)
 	a.is_pending = False
@@ -227,11 +240,13 @@ def DeleteOrder(request,id):
 	
 
 #For Ajax Requests, API Endpoint
+@login_required
 def FetchOrder(request):
 	orders = serializers.serialize("python", Order.objects.filter(is_pending = True))
 	data = {"orders": orders}
 	return JsonResponse(data,safe=False)
 
+@login_required
 def CreateShipment(request,oid):
 	order=Order.objects.filter(id=oid).first()
 	# couriers=['FedEx','Delhivery','Shyplite']
@@ -307,6 +322,7 @@ def CreateShipment(request,oid):
 			pass
 		return render(request,'main/CreateShipment.html',data)
 	
+@login_required
 def CreateShipmentFinal(request,oid,courier):
 	order=Order.objects.filter(id=oid).first()
 
@@ -1344,24 +1360,28 @@ def CreateShipmentFinal(request,oid,courier):
 		# return HttpResponse(pdf, content_type = 'application/pdf')
 		return redirect('/displayshipments/'+ str(shipment.id))
 
+@login_required
 def DisplayShipments(request):
 	shipments=Shipment.objects.all().order_by('-id')
 	data = {}
 	data['shipments'] = shipments
 	return render(request,'main/DisplayShipments.html',data)
 
+@login_required
 def DisplayShipmentDetail(request,sid):
 	shipment=Shipment.objects.filter(id=sid).first()
 	data = {}
 	data['shipment'] = shipment
 	return render(request,'main/DisplayShipmentDetail.html',data)
 
+@login_required
 def GenerateInvoice(request,oid):
 	order = Order.objects.filter(id=oid).first()
 	data = {}
 	data['order'] = order
 	return render(request,'main/GenerateInvoice.html',data)
 
+@login_required
 def LabelTesting(request):
 	import requests
 	order = Order.objects.filter(id=2).first()

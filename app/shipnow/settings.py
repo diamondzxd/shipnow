@@ -126,3 +126,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 MEDIA_URL = '/cdn/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'cdn')
+LOGIN_URL= '/login/'

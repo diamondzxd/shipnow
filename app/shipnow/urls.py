@@ -21,12 +21,17 @@ from main import views as main
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django.contrib.auth.views import LoginView
+
 urlpatterns = [
     # path('admin/', admin.site.urls),
 
     #Main App
     #Index
     path('',main.Index),
+
+    #Login
+    path('login/', LoginView.as_view(), name='login'),
     #Addresses
     path('addaddress/',main.AddAddress),
     path('displayaddress/',main.DisplayAddress),
