@@ -59,6 +59,9 @@ urlpatterns = [
     path('displayshipments/<sid>',main.DisplayShipmentDetail),
     path('generateinvoice/<oid>',main.GenerateInvoice),
     path('labeltest/',main.LabelTesting),
+
+    #Protected Media View
+    path('cdn/<path:path>', main.protected_serve, name='protected_serve'),
     
 ]
 

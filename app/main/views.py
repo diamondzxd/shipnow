@@ -8,6 +8,8 @@ import datetime
 from textwrap import wrap
 from main.utils import render_to_pdf
 from io import BytesIO
+from django.views.static import serve
+from django.conf import settings
 # Create your views here.
 
 #Index Page
@@ -1412,3 +1414,7 @@ def LabelTesting(request):
 	
 	pdf = render_to_pdf('pdf/label.html',data)
 	return HttpResponse(pdf, content_type='application/pdf')
+
+@login_required
+def protected_serve(request, path, document_root=settings.MEDIA_ROOT):
+    return serve(request, path, document_root)
