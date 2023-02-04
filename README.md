@@ -16,7 +16,7 @@ After getting a shipping request, the application sends the Order data to the co
   
 It also allows to Generate the Invoice corresponding to that Order.
 
-[![Live Project](https://img.shields.io/badge/Live%20Project-blue?style=for-the-badge&logo=Google%20Chrome&logoColor=white)](http://test.shipnow.co.in:8000)
+[![Live Project](https://img.shields.io/badge/Live%20Project-blue?style=for-the-badge&logo=Google%20Chrome&logoColor=white)](http://test.shipnow.cloud:8000)
 
 ## Tech Stack 
 
@@ -42,7 +42,7 @@ The app will start on https://127.0.0.1:8000 :)
 
 ## Live Link
 
-http://test.shipnow.co.in:8000
+http://test.shipnow.cloud:8000
 
 ## Branches
 
