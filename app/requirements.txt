@@ -11,7 +11,7 @@ pytz==2019.2
 reportlab==3.5.23
 requests==2.22.0
 six==1.12.0
-sqlparse==0.3.0
+sqlparse==0.4.4
 suds-jurko==0.6
 urllib3==1.25.3
 webencodings==0.5.1
