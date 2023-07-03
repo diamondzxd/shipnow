@@ -6,7 +6,7 @@ fedex==2.4.0
 html5lib==1.0.1
 idna==2.8
 Pillow==6.2.2
-PyPDF2==1.26.0
+PyPDF2==1.27.9
 pytz==2019.2
 reportlab==3.5.23
 requests==2.22.0
