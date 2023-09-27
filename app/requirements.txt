@@ -5,7 +5,7 @@ django-widget-tweaks==1.4.5
 fedex==2.4.0
 html5lib==1.0.1
 idna==2.8
-Pillow==6.2.2
+Pillow==10.0.1
 PyPDF2==1.26.0
 pytz==2019.2
 reportlab==3.5.23
