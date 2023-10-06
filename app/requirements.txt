@@ -1,6 +1,6 @@
 certifi==2019.6.16
 chardet==3.0.4
-Django==2.2.4
+Django==3.2.22
 django-widget-tweaks==1.4.5
 fedex==2.4.0
 html5lib==1.0.1
